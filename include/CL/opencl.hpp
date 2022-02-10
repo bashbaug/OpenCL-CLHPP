@@ -190,6 +190,11 @@
  *   applies to use of cl::Program construction and other program
  *   build variants.
  *
+ * - CL_HPP_OPENCL_API_NAMESPACE
+ *
+ *   Specifies a namespace to be used for all OpenCL API calls.  Useful
+ *   when using a library or other wrapper to call into OpenCL.
+ *
  * - CL_HPP_USE_CL_DEVICE_FISSION
  *
  *   Enable the cl_ext_device_fission extension.
@@ -209,12 +214,6 @@
  * - CL_HPP_USE_IL_KHR
  *
  *   Enable the cl_khr_il_program extension.
- *
- * - CL_HPP_WRAPPER_NS
- *
- *   Allow qualifying the OpenCL library calls with a namespace.
- *   Normally when using function pointers to access the OpenCL library,
- *   e.g: when linking the OpenCL dynamic library with dlopen/dlsym.
  *
  * \section example Example
  *
@@ -401,8 +400,8 @@
 #ifndef CL_HPP_
 #define CL_HPP_
 
-#ifndef CL_HPP_WRAPPER_NS
-#define CL_HPP_WRAPPER_NS
+#ifndef CL_HPP_OPENCL_API_NAMESPACE
+#define CL_HPP_OPENCL_API_NAMESPACE
 #endif
 
 /* Handle deprecated preprocessor definitions. In each case, we only check for
@@ -1700,7 +1699,7 @@ struct ReferenceHandler<cl_device_id>
      *   CL_OUT_OF_HOST_MEMORY
      */
     static cl_int retain(cl_device_id device)
-    { return CL_HPP_WRAPPER_NS::clRetainDevice(device); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clRetainDevice(device); }
     /**
      * Retain the device.
      * \param device A valid device created using createSubDevices
@@ -1711,7 +1710,7 @@ struct ReferenceHandler<cl_device_id>
      *   CL_OUT_OF_HOST_MEMORY
      */
     static cl_int release(cl_device_id device)
-    { return CL_HPP_WRAPPER_NS::clReleaseDevice(device); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clReleaseDevice(device); }
 };
 #else // CL_HPP_TARGET_OPENCL_VERSION >= 120
 /**
@@ -1744,63 +1743,63 @@ template <>
 struct ReferenceHandler<cl_context>
 {
     static cl_int retain(cl_context context)
-    { return CL_HPP_WRAPPER_NS::clRetainContext(context); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clRetainContext(context); }
     static cl_int release(cl_context context)
-    { return CL_HPP_WRAPPER_NS::clReleaseContext(context); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clReleaseContext(context); }
 };
 
 template <>
 struct ReferenceHandler<cl_command_queue>
 {
     static cl_int retain(cl_command_queue queue)
-    { return CL_HPP_WRAPPER_NS::clRetainCommandQueue(queue); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clRetainCommandQueue(queue); }
     static cl_int release(cl_command_queue queue)
-    { return CL_HPP_WRAPPER_NS::clReleaseCommandQueue(queue); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clReleaseCommandQueue(queue); }
 };
 
 template <>
 struct ReferenceHandler<cl_mem>
 {
     static cl_int retain(cl_mem memory)
-    { return CL_HPP_WRAPPER_NS::clRetainMemObject(memory); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clRetainMemObject(memory); }
     static cl_int release(cl_mem memory)
-    { return CL_HPP_WRAPPER_NS::clReleaseMemObject(memory); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clReleaseMemObject(memory); }
 };
 
 template <>
 struct ReferenceHandler<cl_sampler>
 {
     static cl_int retain(cl_sampler sampler)
-    { return CL_HPP_WRAPPER_NS::clRetainSampler(sampler); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clRetainSampler(sampler); }
     static cl_int release(cl_sampler sampler)
-    { return CL_HPP_WRAPPER_NS::clReleaseSampler(sampler); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clReleaseSampler(sampler); }
 };
 
 template <>
 struct ReferenceHandler<cl_program>
 {
     static cl_int retain(cl_program program)
-    { return CL_HPP_WRAPPER_NS::clRetainProgram(program); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clRetainProgram(program); }
     static cl_int release(cl_program program)
-    { return CL_HPP_WRAPPER_NS::clReleaseProgram(program); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clReleaseProgram(program); }
 };
 
 template <>
 struct ReferenceHandler<cl_kernel>
 {
     static cl_int retain(cl_kernel kernel)
-    { return CL_HPP_WRAPPER_NS::clRetainKernel(kernel); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clRetainKernel(kernel); }
     static cl_int release(cl_kernel kernel)
-    { return CL_HPP_WRAPPER_NS::clReleaseKernel(kernel); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clReleaseKernel(kernel); }
 };
 
 template <>
 struct ReferenceHandler<cl_event>
 {
     static cl_int retain(cl_event event)
-    { return CL_HPP_WRAPPER_NS::clRetainEvent(event); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clRetainEvent(event); }
     static cl_int release(cl_event event)
-    { return CL_HPP_WRAPPER_NS::clReleaseEvent(event); }
+    { return CL_HPP_OPENCL_API_NAMESPACE::clReleaseEvent(event); }
 };
 
 
@@ -2298,7 +2297,7 @@ public:
     cl_int getInfo(cl_device_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetDeviceInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetDeviceInfo, object_, name, param),
             __GET_DEVICE_INFO_ERR);
     }
 
@@ -2484,7 +2483,7 @@ private:
             // Otherwise set it
             cl_uint n = 0;
 
-            cl_int err = CL_HPP_WRAPPER_NS::clGetPlatformIDs(0, NULL, &n);
+            cl_int err = CL_HPP_OPENCL_API_NAMESPACE::clGetPlatformIDs(0, NULL, &n);
             if (err != CL_SUCCESS) {
                 default_error_ = err;
                 return;
@@ -2495,7 +2494,7 @@ private:
             }
 
             vector<cl_platform_id> ids(n);
-            err = CL_HPP_WRAPPER_NS::clGetPlatformIDs(n, ids.data(), NULL);
+            err = CL_HPP_OPENCL_API_NAMESPACE::clGetPlatformIDs(n, ids.data(), NULL);
             if (err != CL_SUCCESS) {
                 default_error_ = err;
                 return;
@@ -2585,7 +2584,7 @@ public:
     cl_int getInfo(cl_platform_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetPlatformInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetPlatformInfo, object_, name, param),
             __GET_PLATFORM_INFO_ERR);
     }
 
@@ -2615,14 +2614,14 @@ public:
         if( devices == NULL ) {
             return detail::errHandler(CL_INVALID_ARG_VALUE, __GET_DEVICE_IDS_ERR);
         }
-        cl_int err = CL_HPP_WRAPPER_NS::clGetDeviceIDs(object_, type, 0, NULL, &n);
+        cl_int err = CL_HPP_OPENCL_API_NAMESPACE::clGetDeviceIDs(object_, type, 0, NULL, &n);
         if (err != CL_SUCCESS  && err != CL_DEVICE_NOT_FOUND) {
             return detail::errHandler(err, __GET_DEVICE_IDS_ERR);
         }
 
         vector<cl_device_id> ids(n);
         if (n>0) {
-            err = CL_HPP_WRAPPER_NS::clGetDeviceIDs(object_, type, n, ids.data(), NULL);
+            err = CL_HPP_OPENCL_API_NAMESPACE::clGetDeviceIDs(object_, type, n, ids.data(), NULL);
             if (err != CL_SUCCESS) {
                 return detail::errHandler(err, __GET_DEVICE_IDS_ERR);
             }
@@ -2746,13 +2745,13 @@ public:
             return detail::errHandler(CL_INVALID_ARG_VALUE, __GET_PLATFORM_IDS_ERR);
         }
 
-        cl_int err = CL_HPP_WRAPPER_NS::clGetPlatformIDs(0, NULL, &n);
+        cl_int err = CL_HPP_OPENCL_API_NAMESPACE::clGetPlatformIDs(0, NULL, &n);
         if (err != CL_SUCCESS) {
             return detail::errHandler(err, __GET_PLATFORM_IDS_ERR);
         }
 
         vector<cl_platform_id> ids(n);
-        err = CL_HPP_WRAPPER_NS::clGetPlatformIDs(n, ids.data(), NULL);
+        err = CL_HPP_OPENCL_API_NAMESPACE::clGetPlatformIDs(n, ids.data(), NULL);
         if (err != CL_SUCCESS) {
             return detail::errHandler(err, __GET_PLATFORM_IDS_ERR);
         }
@@ -2807,7 +2806,7 @@ public:
     cl_int
     unloadCompiler()
     {
-        return CL_HPP_WRAPPER_NS::clUnloadPlatformCompiler(object_);
+        return CL_HPP_OPENCL_API_NAMESPACE::clUnloadPlatformCompiler(object_);
     }
 #endif // CL_HPP_TARGET_OPENCL_VERSION >= 120
 }; // class Platform
@@ -2830,7 +2829,7 @@ UnloadCompiler() CL_API_SUFFIX__VERSION_1_1_DEPRECATED;
 inline cl_int
 UnloadCompiler()
 {
-    return CL_HPP_WRAPPER_NS::clUnloadCompiler();
+    return CL_HPP_OPENCL_API_NAMESPACE::clUnloadCompiler();
 }
 #endif // #if defined(CL_USE_DEPRECATED_OPENCL_1_1_APIS)
 
@@ -2934,7 +2933,7 @@ public:
             deviceIDs[deviceIndex] = (devices[deviceIndex])();
         }
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateContext(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateContext(
             properties, (cl_uint) numDevices,
             deviceIDs.data(),
             notifyFptr, data, &error);
@@ -2964,7 +2963,7 @@ public:
 
         cl_device_id deviceID = device();
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateContext(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateContext(
             properties, 1,
             &deviceID,
             notifyFptr, data, &error);
@@ -3053,7 +3052,7 @@ public:
             properties = &prop[0];
         }
 #endif
-        object_ = CL_HPP_WRAPPER_NS::clCreateContextFromType(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateContextFromType(
             properties, type, notifyFptr, data, &error);
 
         detail::errHandler(error, __CREATE_CONTEXT_FROM_TYPE_ERR);
@@ -3146,7 +3145,7 @@ public:
     cl_int getInfo(cl_context_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetContextInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetContextInfo, object_, name, param),
             __GET_CONTEXT_INFO_ERR);
     }
 
@@ -3179,7 +3178,7 @@ public:
             return CL_SUCCESS;
         }
 
-        cl_int err = CL_HPP_WRAPPER_NS::clGetSupportedImageFormats(
+        cl_int err = CL_HPP_OPENCL_API_NAMESPACE::clGetSupportedImageFormats(
            object_, 
            flags,
            type, 
@@ -3192,7 +3191,7 @@ public:
 
         if (numEntries > 0) {
             vector<ImageFormat> value(numEntries);
-            err = CL_HPP_WRAPPER_NS::clGetSupportedImageFormats(
+            err = CL_HPP_OPENCL_API_NAMESPACE::clGetSupportedImageFormats(
                 object_,
                 flags,
                 type,
@@ -3288,7 +3287,7 @@ public:
     cl_int getInfo(cl_event_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetEventInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetEventInfo, object_, name, param),
             __GET_EVENT_INFO_ERR);
     }
 
@@ -3311,7 +3310,7 @@ public:
     cl_int getProfilingInfo(cl_profiling_info name, T* param) const
     {
         return detail::errHandler(detail::getInfo(
-                &CL_HPP_WRAPPER_NS::clGetEventProfilingInfo, object_, name, param),
+                &CL_HPP_OPENCL_API_NAMESPACE::clGetEventProfilingInfo, object_, name, param),
             __GET_EVENT_PROFILE_INFO_ERR);
     }
 
@@ -3336,7 +3335,7 @@ public:
     cl_int wait() const
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clWaitForEvents(1, &object_),
+            CL_HPP_OPENCL_API_NAMESPACE::clWaitForEvents(1, &object_),
             __WAIT_FOR_EVENTS_ERR);
     }
 
@@ -3351,7 +3350,7 @@ public:
         void * user_data = NULL)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetEventCallback(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetEventCallback(
                 object_,
                 type,
                 pfn_notify,
@@ -3368,7 +3367,7 @@ public:
     waitForEvents(const vector<Event>& events)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clWaitForEvents(
+            CL_HPP_OPENCL_API_NAMESPACE::clWaitForEvents(
                 (cl_uint) events.size(), (events.size() > 0) ? (cl_event*)&events.front() : NULL),
             __WAIT_FOR_EVENTS_ERR);
     }
@@ -3391,7 +3390,7 @@ public:
         cl_int * err = NULL)
     {
         cl_int error;
-        object_ = CL_HPP_WRAPPER_NS::clCreateUserEvent(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateUserEvent(
             context(),
             &error);
 
@@ -3411,7 +3410,7 @@ public:
     cl_int setStatus(cl_int status)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetUserEventStatus(object_,status),
+            CL_HPP_OPENCL_API_NAMESPACE::clSetUserEventStatus(object_,status),
             __SET_USER_EVENT_STATUS_ERR);
     }
 };
@@ -3425,7 +3424,7 @@ inline static cl_int
 WaitForEvents(const vector<Event>& events)
 {
     return detail::errHandler(
-        CL_HPP_WRAPPER_NS::clWaitForEvents(
+        CL_HPP_OPENCL_API_NAMESPACE::clWaitForEvents(
             (cl_uint) events.size(), (events.size() > 0) ? (cl_event*)&events.front() : NULL),
         __WAIT_FOR_EVENTS_ERR);
 }
@@ -3503,7 +3502,7 @@ public:
     cl_int getInfo(cl_mem_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetMemObjectInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetMemObjectInfo, object_, name, param),
             __GET_MEM_OBJECT_INFO_ERR);
     }
 
@@ -3540,7 +3539,7 @@ public:
         void * user_data = NULL)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetMemObjectDestructorCallback(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetMemObjectDestructorCallback(
                 object_,
                 pfn_notify,
                 user_data), 
@@ -3947,7 +3946,7 @@ public:
         cl_int* err = NULL)
     {
         cl_int error;
-        object_ = CL_HPP_WRAPPER_NS::clCreateBuffer(context(), flags, size, host_ptr, &error);
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateBuffer(context(), flags, size, host_ptr, &error);
 
         detail::errHandler(error, __CREATE_BUFFER_ERR);
         if (err != NULL) {
@@ -3974,7 +3973,7 @@ public:
 
         Context context = Context::getDefault(err);
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateBuffer(context(), flags, size, host_ptr, &error);
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateBuffer(context(), flags, size, host_ptr, &error);
 
         detail::errHandler(error, __CREATE_BUFFER_ERR);
         if (err != NULL) {
@@ -4014,9 +4013,9 @@ public:
         Context context = Context::getDefault(err);
 
         if( useHostPtr ) {
-            object_ = CL_HPP_WRAPPER_NS::clCreateBuffer(context(), flags, size, static_cast<DataType*>(&*startIterator), &error);
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateBuffer(context(), flags, size, static_cast<DataType*>(&*startIterator), &error);
         } else {
-            object_ = CL_HPP_WRAPPER_NS::clCreateBuffer(context(), flags, size, 0, &error);
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateBuffer(context(), flags, size, 0, &error);
         }
 
         detail::errHandler(error, __CREATE_BUFFER_ERR);
@@ -4114,7 +4113,7 @@ public:
     {
         Buffer result;
         cl_int error;
-        result.object_ = CL_HPP_WRAPPER_NS::clCreateSubBuffer(
+        result.object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateSubBuffer(
             object_, 
             flags, 
             buffer_create_type, 
@@ -4263,7 +4262,7 @@ public:
         cl_int * err = NULL)
     {
         cl_int error;
-        object_ = CL_HPP_WRAPPER_NS::clCreateFromGLBuffer(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateFromGLBuffer(
             context(),
             flags,
             bufobj,
@@ -4332,7 +4331,7 @@ public:
         cl_GLuint * gl_object_name)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clGetGLObjectInfo(object_,type,gl_object_name),
+            CL_HPP_OPENCL_API_NAMESPACE::clGetGLObjectInfo(object_,type,gl_object_name),
             __GET_GL_OBJECT_INFO_ERR);
     }
 };
@@ -4360,7 +4359,7 @@ public:
         cl_int * err = NULL)
     {
         cl_int error;
-        object_ = CL_HPP_WRAPPER_NS::clCreateFromGLRenderbuffer(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateFromGLRenderbuffer(
             context(),
             flags,
             bufobj,
@@ -4429,7 +4428,7 @@ public:
         cl_GLuint * gl_object_name)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clGetGLObjectInfo(object_,type,gl_object_name),
+            CL_HPP_OPENCL_API_NAMESPACE::clGetGLObjectInfo(object_,type,gl_object_name),
             __GET_GL_OBJECT_INFO_ERR);
     }
 };
@@ -4501,7 +4500,7 @@ public:
     cl_int getImageInfo(cl_image_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetImageInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetImageInfo, object_, name, param),
             __GET_IMAGE_INFO_ERR);
     }
     
@@ -4548,7 +4547,7 @@ public:
         desc.image_type = CL_MEM_OBJECT_IMAGE1D;
         desc.image_width = width;
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateImage(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage(
             context(), 
             flags, 
             &format, 
@@ -4636,7 +4635,7 @@ public:
         desc.image_width = width;
         desc.buffer = buffer();
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateImage(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage(
             context(), 
             flags, 
             &format, 
@@ -4722,7 +4721,7 @@ public:
         desc.image_array_size = arraySize;
         desc.image_row_pitch = rowPitch;
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateImage(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage(
             context(), 
             flags, 
             &format, 
@@ -4834,7 +4833,7 @@ public:
             desc.image_height = height;
             desc.image_row_pitch = row_pitch;
 
-            object_ = CL_HPP_WRAPPER_NS::clCreateImage(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage(
                 context(),
                 flags,
                 &format,
@@ -4851,7 +4850,7 @@ public:
 #if CL_HPP_MINIMUM_OPENCL_VERSION < 120
         if (!useCreateImage)
         {
-            object_ = CL_HPP_WRAPPER_NS::clCreateImage2D(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage2D(
                 context(), flags,&format, width, height, row_pitch, host_ptr, &error);
 
             detail::errHandler(error, __CREATE_IMAGE2D_ERR);
@@ -4886,7 +4885,7 @@ public:
         desc.image_row_pitch = row_pitch;
         desc.buffer = sourceBuffer();
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateImage(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage(
             context(),
             0, // flags inherited from buffer
             &format,
@@ -4949,7 +4948,7 @@ public:
         desc.num_samples = sourceNumSamples;
         desc.buffer = sourceImage();
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateImage(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage(
             context(),
             0, // flags should be inherited from mem_object
             &sourceFormat,
@@ -5045,7 +5044,7 @@ public:
         cl_int * err = NULL)
     {
         cl_int error;
-        object_ = CL_HPP_WRAPPER_NS::clCreateFromGLTexture2D(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateFromGLTexture2D(
             context(),
             flags,
             target,
@@ -5143,7 +5142,7 @@ public:
         desc.image_row_pitch = rowPitch;
         desc.image_slice_pitch = slicePitch;
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateImage(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage(
             context(), 
             flags, 
             &format, 
@@ -5255,7 +5254,7 @@ public:
             desc.image_row_pitch = row_pitch;
             desc.image_slice_pitch = slice_pitch;
 
-            object_ = CL_HPP_WRAPPER_NS::clCreateImage(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage(
                 context(), 
                 flags, 
                 &format, 
@@ -5272,7 +5271,7 @@ public:
 #if CL_HPP_MINIMUM_OPENCL_VERSION < 120
         if (!useCreateImage)
         {
-            object_ = CL_HPP_WRAPPER_NS::clCreateImage3D(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateImage3D(
                 context(), flags, &format, width, height, depth, row_pitch,
                 slice_pitch, host_ptr, &error);
 
@@ -5362,7 +5361,7 @@ public:
         cl_int * err = NULL)
     {
         cl_int error;
-        object_ = CL_HPP_WRAPPER_NS::clCreateFromGLTexture3D(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateFromGLTexture3D(
             context(),
             flags,
             target,
@@ -5448,7 +5447,7 @@ public:
         cl_int * err = NULL)
     {
         cl_int error;
-        object_ = CL_HPP_WRAPPER_NS::clCreateFromGLTexture(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateFromGLTexture(
             context(), 
             flags, 
             target,
@@ -5541,7 +5540,7 @@ public:
         cl_int error;
 
         cl_mem_flags flags = CL_MEM_READ_WRITE | CL_MEM_HOST_NO_ACCESS;
-        object_ = CL_HPP_WRAPPER_NS::clCreatePipe(context(), flags, packet_size, max_packets, nullptr, &error);
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreatePipe(context(), flags, packet_size, max_packets, nullptr, &error);
 
         detail::errHandler(error, __CREATE_PIPE_ERR);
         if (err != NULL) {
@@ -5567,7 +5566,7 @@ public:
         Context context = Context::getDefault(err);
 
         cl_mem_flags flags = CL_MEM_READ_WRITE | CL_MEM_HOST_NO_ACCESS;
-        object_ = CL_HPP_WRAPPER_NS::clCreatePipe(context(), flags, packet_size, max_packets, nullptr, &error);
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreatePipe(context(), flags, packet_size, max_packets, nullptr, &error);
 
         detail::errHandler(error, __CREATE_PIPE_ERR);
         if (err != NULL) {
@@ -5631,7 +5630,7 @@ public:
     cl_int getInfo(cl_pipe_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetPipeInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetPipeInfo, object_, name, param),
             __GET_PIPE_INFO_ERR);
     }
 
@@ -5685,7 +5684,7 @@ public:
             CL_SAMPLER_ADDRESSING_MODE, addressing_mode,
             CL_SAMPLER_FILTER_MODE, filter_mode,
             0 };
-        object_ = CL_HPP_WRAPPER_NS::clCreateSamplerWithProperties(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateSamplerWithProperties(
             context(),
             sampler_properties,
             &error);
@@ -5695,7 +5694,7 @@ public:
             *err = error;
         }
 #else
-        object_ = CL_HPP_WRAPPER_NS::clCreateSampler(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateSampler(
             context(),
             normalized_coords,
             addressing_mode,
@@ -5764,7 +5763,7 @@ public:
     cl_int getInfo(cl_sampler_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetSamplerInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetSamplerInfo, object_, name, param),
             __GET_SAMPLER_INFO_ERR);
     }
 
@@ -5988,7 +5987,7 @@ public:
     cl_int getInfo(cl_kernel_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetKernelInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetKernelInfo, object_, name, param),
             __GET_KERNEL_INFO_ERR);
     }
 
@@ -6010,7 +6009,7 @@ public:
     cl_int getArgInfo(cl_uint argIndex, cl_kernel_arg_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetKernelArgInfo, object_, argIndex, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetKernelArgInfo, object_, argIndex, name, param),
             __GET_KERNEL_ARG_INFO_ERR);
     }
 
@@ -6034,7 +6033,7 @@ public:
     {
         return detail::errHandler(
             detail::getInfo(
-                &CL_HPP_WRAPPER_NS::clGetKernelWorkGroupInfo, object_, device(), name, param),
+                &CL_HPP_OPENCL_API_NAMESPACE::clGetKernelWorkGroupInfo, object_, device(), name, param),
                 __GET_KERNEL_WORK_GROUP_INFO_ERR);
     }
 
@@ -6092,7 +6091,7 @@ public:
     cl_int setArg(cl_uint index, const cl::pointer<T, D> &argPtr)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelArgSVMPointer(object_, index, argPtr.get()),
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelArgSVMPointer(object_, index, argPtr.get()),
             __SET_KERNEL_ARGS_ERR);
     }
 
@@ -6102,7 +6101,7 @@ public:
     cl_int setArg(cl_uint index, const cl::vector<T, Alloc> &argPtr)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelArgSVMPointer(object_, index, argPtr.data()),
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelArgSVMPointer(object_, index, argPtr.data()),
             __SET_KERNEL_ARGS_ERR);
     }
 
@@ -6113,7 +6112,7 @@ public:
         setArg(cl_uint index, const T argPtr)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelArgSVMPointer(object_, index, argPtr),
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelArgSVMPointer(object_, index, argPtr),
             __SET_KERNEL_ARGS_ERR);
     }
 #endif // #if CL_HPP_TARGET_OPENCL_VERSION >= 200
@@ -6125,7 +6124,7 @@ public:
         setArg(cl_uint index, const T &value)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelArg(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelArg(
                 object_,
                 index,
                 detail::KernelArgumentHandler<T>::size(value),
@@ -6136,7 +6135,7 @@ public:
     cl_int setArg(cl_uint index, size_type size, const void* argPtr)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelArg(object_, index, size, argPtr),
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelArg(object_, index, size, argPtr),
             __SET_KERNEL_ARGS_ERR);
     }
 
@@ -6148,7 +6147,7 @@ public:
     cl_int setSVMPointers(const vector<void*> &pointerList)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelExecInfo(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelExecInfo(
                 object_,
                 CL_KERNEL_EXEC_INFO_SVM_PTRS,
                 sizeof(void*)*pointerList.size(),
@@ -6163,7 +6162,7 @@ public:
     cl_int setSVMPointers(const std::array<void*, ArrayLength> &pointerList)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelExecInfo(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelExecInfo(
                 object_,
                 CL_KERNEL_EXEC_INFO_SVM_PTRS,
                 sizeof(void*)*pointerList.size(),
@@ -6185,7 +6184,7 @@ public:
     {
         cl_bool svmEnabled_ = svmEnabled ? CL_TRUE : CL_FALSE;
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelExecInfo(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelExecInfo(
                 object_,
                 CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM,
                 sizeof(cl_bool),
@@ -6230,7 +6229,7 @@ public:
 
         setSVMPointersHelper<0, 1 + sizeof...(Ts)>(pointerList, t0, ts...);
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelExecInfo(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelExecInfo(
             object_,
             CL_KERNEL_EXEC_INFO_SVM_PTRS,
             sizeof(void*)*(1 + sizeof...(Ts)),
@@ -6241,7 +6240,7 @@ public:
     cl_int setExecInfo(cl_kernel_exec_info param_name, const T& val)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetKernelExecInfo(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetKernelExecInfo(
             object_,
             param_name,
             sizeof(T),
@@ -6298,14 +6297,14 @@ public:
 
         Context context = Context::getDefault(err);
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateProgramWithSource(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateProgramWithSource(
             context(), (cl_uint)1, &strings, &length, &error);
 
         detail::errHandler(error, __CREATE_PROGRAM_WITH_SOURCE_ERR);
 
         if (error == CL_SUCCESS && build) {
 
-            error = CL_HPP_WRAPPER_NS::clBuildProgram(
+            error = CL_HPP_OPENCL_API_NAMESPACE::clBuildProgram(
                 object_,
                 0,
                 NULL,
@@ -6336,13 +6335,13 @@ public:
         const char * strings = source.c_str();
         const size_type length  = source.size();
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateProgramWithSource(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateProgramWithSource(
             context(), (cl_uint)1, &strings, &length, &error);
 
         detail::errHandler(error, __CREATE_PROGRAM_WITH_SOURCE_ERR);
 
         if (error == CL_SUCCESS && build) {
-            error = CL_HPP_WRAPPER_NS::clBuildProgram(
+            error = CL_HPP_OPENCL_API_NAMESPACE::clBuildProgram(
                 object_,
                 0,
                 NULL,
@@ -6388,7 +6387,7 @@ public:
 #endif // #if !defined(CL_HPP_ENABLE_PROGRAM_CONSTRUCTION_FROM_ARRAY_COMPATIBILITY)
         }
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateProgramWithSource(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateProgramWithSource(
             context(), (cl_uint)n, strings.data(), lengths.data(), &error);
 
         detail::errHandler(error, __CREATE_PROGRAM_WITH_SOURCE_ERR);
@@ -6423,7 +6422,7 @@ public:
 #endif // #if !defined(CL_HPP_ENABLE_PROGRAM_CONSTRUCTION_FROM_ARRAY_COMPATIBILITY)
         }
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateProgramWithSource(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateProgramWithSource(
             context(), (cl_uint)n, strings.data(), lengths.data(), &error);
 
         detail::errHandler(error, __CREATE_PROGRAM_WITH_SOURCE_ERR);
@@ -6449,7 +6448,7 @@ public:
 
 #if CL_HPP_TARGET_OPENCL_VERSION >= 210
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateProgramWithIL(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateProgramWithIL(
             context(), static_cast<const void*>(IL.data()), IL.size(), &error);
 
 #else // #if CL_HPP_TARGET_OPENCL_VERSION >= 210
@@ -6467,7 +6466,7 @@ public:
 
         if (error == CL_SUCCESS && build) {
 
-            error = CL_HPP_WRAPPER_NS::clBuildProgram(
+            error = CL_HPP_OPENCL_API_NAMESPACE::clBuildProgram(
                 object_,
                 0,
                 NULL,
@@ -6502,7 +6501,7 @@ public:
 
 #if CL_HPP_TARGET_OPENCL_VERSION >= 210
 
-        object_ = CL_HPP_WRAPPER_NS::clCreateProgramWithIL(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateProgramWithIL(
             context(), static_cast<const void*>(IL.data()), IL.size(), &error);
 
 #else // #if CL_HPP_TARGET_OPENCL_VERSION >= 210
@@ -6519,7 +6518,7 @@ public:
         detail::errHandler(error, __CREATE_PROGRAM_WITH_IL_ERR);
 
         if (error == CL_SUCCESS && build) {
-            error = CL_HPP_WRAPPER_NS::clBuildProgram(
+            error = CL_HPP_OPENCL_API_NAMESPACE::clBuildProgram(
                 object_,
                 0,
                 NULL,
@@ -6604,7 +6603,7 @@ public:
             binaryStatus->resize(numDevices);
         }
         
-        object_ = CL_HPP_WRAPPER_NS::clCreateProgramWithBinary(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateProgramWithBinary(
             context(), (cl_uint) devices.size(),
             deviceIDs.data(),
             lengths.data(), images.data(), (binaryStatus != NULL && numDevices > 0)
@@ -6638,7 +6637,7 @@ public:
             deviceIDs[deviceIndex] = (devices[deviceIndex])();
         }
         
-        object_ = CL_HPP_WRAPPER_NS::clCreateProgramWithBuiltInKernels(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateProgramWithBuiltInKernels(
             context(), 
             (cl_uint) devices.size(),
             deviceIDs.data(),
@@ -6711,7 +6710,7 @@ public:
             deviceIDs[deviceIndex] = (devices[deviceIndex])();
         }
 
-        cl_int buildError = CL_HPP_WRAPPER_NS::clBuildProgram(
+        cl_int buildError = CL_HPP_OPENCL_API_NAMESPACE::clBuildProgram(
             object_,
             (cl_uint)
             devices.size(),
@@ -6731,7 +6730,7 @@ public:
     {
         cl_device_id deviceID = device();
 
-        cl_int buildError = CL_HPP_WRAPPER_NS::clBuildProgram(
+        cl_int buildError = CL_HPP_OPENCL_API_NAMESPACE::clBuildProgram(
             object_,
             1,
             &deviceID,
@@ -6749,7 +6748,7 @@ public:
         void (CL_CALLBACK * notifyFptr)(cl_program, void *) = NULL,
         void* data = NULL) const
     {
-        cl_int buildError = CL_HPP_WRAPPER_NS::clBuildProgram(
+        cl_int buildError = CL_HPP_OPENCL_API_NAMESPACE::clBuildProgram(
             object_,
             0,
             NULL,
@@ -6766,7 +6765,7 @@ public:
         void (CL_CALLBACK * notifyFptr)(cl_program, void *) = NULL,
         void* data = NULL) const
     {
-        cl_int error = CL_HPP_WRAPPER_NS::clCompileProgram(
+        cl_int error = CL_HPP_OPENCL_API_NAMESPACE::clCompileProgram(
             object_,
             0,
             NULL,
@@ -6784,7 +6783,7 @@ public:
     cl_int getInfo(cl_program_info name, T* param) const
     {
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetProgramInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetProgramInfo, object_, name, param),
             __GET_PROGRAM_INFO_ERR);
     }
 
@@ -6807,7 +6806,7 @@ public:
     {
         return detail::errHandler(
             detail::getInfo(
-                &CL_HPP_WRAPPER_NS::clGetProgramBuildInfo, object_, device(), name, param),
+                &CL_HPP_OPENCL_API_NAMESPACE::clGetProgramBuildInfo, object_, device(), name, param),
                 __GET_PROGRAM_BUILD_INFO_ERR);
     }
 
@@ -6871,14 +6870,14 @@ public:
     cl_int createKernels(vector<Kernel>* kernels)
     {
         cl_uint numKernels;
-        cl_int err = CL_HPP_WRAPPER_NS::clCreateKernelsInProgram(object_, 0, NULL, &numKernels);
+        cl_int err = CL_HPP_OPENCL_API_NAMESPACE::clCreateKernelsInProgram(object_, 0, NULL, &numKernels);
         if (err != CL_SUCCESS) {
             return detail::errHandler(err, __CREATE_KERNELS_IN_PROGRAM_ERR);
         }
 
         vector<cl_kernel> value(numKernels);
         
-        err = CL_HPP_WRAPPER_NS::clCreateKernelsInProgram(
+        err = CL_HPP_OPENCL_API_NAMESPACE::clCreateKernelsInProgram(
             object_, numKernels, value.data(), NULL);
         if (err != CL_SUCCESS) {
             return detail::errHandler(err, __CREATE_KERNELS_IN_PROGRAM_ERR);
@@ -6915,7 +6914,7 @@ public:
         void * user_data = NULL) CL_API_SUFFIX__VERSION_2_2_DEPRECATED
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetProgramReleaseCallback(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetProgramReleaseCallback(
                 object_,
                 pfn_notify,
                 user_data),
@@ -6932,7 +6931,7 @@ public:
         setSpecializationConstant(cl_uint index, const T &value)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetProgramSpecializationConstant(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetProgramSpecializationConstant(
                 object_,
                 index,
                 sizeof(value),
@@ -6947,7 +6946,7 @@ public:
     cl_int setSpecializationConstant(cl_uint index, size_type size, const void* value)
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clSetProgramSpecializationConstant(
+            CL_HPP_OPENCL_API_NAMESPACE::clSetProgramSpecializationConstant(
                 object_,
                 index,
                 size,
@@ -6975,7 +6974,7 @@ inline Program linkProgram(
         detail::errHandler(error_local, __LINK_PROGRAM_ERR);
     }
 
-    cl_program prog = CL_HPP_WRAPPER_NS::clLinkProgram(
+    cl_program prog = CL_HPP_OPENCL_API_NAMESPACE::clLinkProgram(
         ctx(),
         0,
         NULL,
@@ -7016,7 +7015,7 @@ inline Program linkProgram(
             detail::errHandler(error_local, __LINK_PROGRAM_ERR);
         }
     }
-    cl_program prog = CL_HPP_WRAPPER_NS::clLinkProgram(
+    cl_program prog = CL_HPP_OPENCL_API_NAMESPACE::clLinkProgram(
         ctx(),
         0,
         NULL,
@@ -7057,7 +7056,7 @@ inline cl_int cl::Program::getInfo(cl_program_info name, vector<vector<unsigned 
         }
 
         return detail::errHandler(
-            detail::getInfo(&CL_HPP_WRAPPER_NS::clGetProgramInfo, object_, name, param),
+            detail::getInfo(&CL_HPP_OPENCL_API_NAMESPACE::clGetProgramInfo, object_, name, param),
             __GET_PROGRAM_INFO_ERR);
     }
 
@@ -7083,7 +7082,7 @@ inline cl_int cl::Program::setSpecializationConstant(cl_uint index, const bool &
 {
     cl_uchar ucValue = value ? CL_UCHAR_MAX : 0;
     return detail::errHandler(
-        CL_HPP_WRAPPER_NS::clSetProgramSpecializationConstant(
+        CL_HPP_OPENCL_API_NAMESPACE::clSetProgramSpecializationConstant(
             object_,
             index,
             sizeof(ucValue),
@@ -7096,7 +7095,7 @@ inline Kernel::Kernel(const Program& program, const char* name, cl_int* err)
 {
     cl_int error;
 
-    object_ = CL_HPP_WRAPPER_NS::clCreateKernel(program(), name, &error);
+    object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateKernel(program(), name, &error);
     detail::errHandler(error, __CREATE_KERNEL_ERR);
 
     if (err != NULL) {
@@ -7221,7 +7220,7 @@ public:
                 cl_queue_properties queue_properties[] = {
                     CL_QUEUE_PROPERTIES, properties, 0 };
                 if ((properties & CL_QUEUE_ON_DEVICE) == 0) {
-                    object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+                    object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
                         context(), device(), queue_properties, &error);
                 }
                 else {
@@ -7236,7 +7235,7 @@ public:
 #endif // CL_HPP_TARGET_OPENCL_VERSION >= 200
 #if CL_HPP_MINIMUM_OPENCL_VERSION < 200
             if (!useWithProperties) {
-                object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueue(
+                object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueue(
                     context(), device(), properties, &error);
 
                 detail::errHandler(error, __CREATE_COMMAND_QUEUE_ERR);
@@ -7287,7 +7286,7 @@ public:
                cl_queue_properties queue_properties[] = {
                    CL_QUEUE_PROPERTIES, static_cast<cl_queue_properties>(properties), 0 };
 
-               object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+               object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
                    context(), device(), queue_properties, &error);
 
                detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -7298,7 +7297,7 @@ public:
 #endif // CL_HPP_TARGET_OPENCL_VERSION >= 200
 #if CL_HPP_MINIMUM_OPENCL_VERSION < 200
            if (!useWithProperties) {
-               object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueue(
+               object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueue(
                    context(), device(), static_cast<cl_command_queue_properties>(properties), &error);
 
                detail::errHandler(error, __CREATE_COMMAND_QUEUE_ERR);
@@ -7352,7 +7351,7 @@ public:
             cl_queue_properties queue_properties[] = {
                 CL_QUEUE_PROPERTIES, properties, 0 };
             if ((properties & CL_QUEUE_ON_DEVICE) == 0) {
-                object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+                object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
                     context(), devices[0](), queue_properties, &error);
             }
             else {
@@ -7367,7 +7366,7 @@ public:
 #endif // CL_HPP_TARGET_OPENCL_VERSION >= 200
 #if CL_HPP_MINIMUM_OPENCL_VERSION < 200
         if (!useWithProperties) {
-            object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueue(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueue(
                 context(), devices[0](), properties, &error);
 
             detail::errHandler(error, __CREATE_COMMAND_QUEUE_ERR);
@@ -7418,7 +7417,7 @@ public:
         if (useWithProperties) {
             cl_queue_properties queue_properties[] = {
                 CL_QUEUE_PROPERTIES, static_cast<cl_queue_properties>(properties), 0 };
-            object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
                 context(), devices[0](), queue_properties, &error);
 
             detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -7429,7 +7428,7 @@ public:
 #endif // CL_HPP_TARGET_OPENCL_VERSION >= 200
 #if CL_HPP_MINIMUM_OPENCL_VERSION < 200
         if (!useWithProperties) {
-            object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueue(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueue(
                 context(), devices[0](), static_cast<cl_command_queue_properties>(properties), &error);
 
             detail::errHandler(error, __CREATE_COMMAND_QUEUE_ERR);
@@ -7469,7 +7468,7 @@ public:
         if (useWithProperties) {
             cl_queue_properties queue_properties[] = {
                 CL_QUEUE_PROPERTIES, properties, 0 };
-            object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
                 context(), device(), queue_properties, &error);
 
             detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -7480,7 +7479,7 @@ public:
 #endif // CL_HPP_TARGET_OPENCL_VERSION >= 200
 #if CL_HPP_MINIMUM_OPENCL_VERSION < 200
         if (!useWithProperties) {
-            object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueue(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueue(
                 context(), device(), properties, &error);
 
             detail::errHandler(error, __CREATE_COMMAND_QUEUE_ERR);
@@ -7520,7 +7519,7 @@ public:
         if (useWithProperties) {
             cl_queue_properties queue_properties[] = {
                 CL_QUEUE_PROPERTIES, static_cast<cl_queue_properties>(properties), 0 };
-            object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
                 context(), device(), queue_properties, &error);
 
             detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -7531,7 +7530,7 @@ public:
 #endif // CL_HPP_TARGET_OPENCL_VERSION >= 200
 #if CL_HPP_MINIMUM_OPENCL_VERSION < 200
         if (!useWithProperties) {
-            object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueue(
+            object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueue(
                 context(), device(), static_cast<cl_command_queue_properties>(properties), &error);
 
             detail::errHandler(error, __CREATE_COMMAND_QUEUE_ERR);
@@ -7621,7 +7620,7 @@ public:
     {
         return detail::errHandler(
             detail::getInfo(
-                &CL_HPP_WRAPPER_NS::clGetCommandQueueInfo, object_, name, param),
+                &CL_HPP_OPENCL_API_NAMESPACE::clGetCommandQueueInfo, object_, name, param),
                 __GET_COMMAND_QUEUE_INFO_ERR);
     }
 
@@ -7649,7 +7648,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueReadBuffer(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueReadBuffer(
                 object_, buffer(), blocking, offset, size,
                 ptr,
                 (events != NULL) ? (cl_uint) events->size() : 0,
@@ -7674,7 +7673,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueWriteBuffer(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueWriteBuffer(
                 object_, buffer(), blocking, offset, size,
                 ptr,
                 (events != NULL) ? (cl_uint) events->size() : 0,
@@ -7699,7 +7698,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueCopyBuffer(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueCopyBuffer(
                 object_, src(), dst(), src_offset, dst_offset, size,
                 (events != NULL) ? (cl_uint) events->size() : 0,
                 (events != NULL && events->size() > 0) ? (cl_event*) &events->front() : NULL,
@@ -7728,7 +7727,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueReadBufferRect(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueReadBufferRect(
                 object_, 
                 buffer(), 
                 blocking,
@@ -7767,7 +7766,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueWriteBufferRect(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueWriteBufferRect(
                 object_, 
                 buffer(), 
                 blocking,
@@ -7805,7 +7804,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueCopyBufferRect(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueCopyBufferRect(
                 object_, 
                 src(), 
                 dst(), 
@@ -7850,7 +7849,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueFillBuffer(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueFillBuffer(
                 object_, 
                 buffer(),
                 static_cast<void*>(&pattern),
@@ -7882,7 +7881,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueReadImage(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueReadImage(
                 object_, 
                 image(), 
                 blocking, 
@@ -7915,7 +7914,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueWriteImage(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueWriteImage(
                 object_, 
                 image(), 
                 blocking, 
@@ -7946,7 +7945,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueCopyImage(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueCopyImage(
                 object_, 
                 src(), 
                 dst(), 
@@ -7982,7 +7981,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueFillImage(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueFillImage(
                 object_, 
                 image(),
                 static_cast<void*>(&fillColor), 
@@ -8016,7 +8015,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueFillImage(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueFillImage(
                 object_, 
                 image(),
                 static_cast<void*>(&fillColor), 
@@ -8050,7 +8049,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueFillImage(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueFillImage(
                 object_, 
                 image(),
                 static_cast<void*>(&fillColor), 
@@ -8079,7 +8078,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueCopyImageToBuffer(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueCopyImageToBuffer(
                 object_, 
                 src(), 
                 dst(), 
@@ -8108,7 +8107,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueCopyBufferToImage(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueCopyBufferToImage(
                 object_, 
                 src(), 
                 dst(), 
@@ -8138,7 +8137,7 @@ public:
     {
         cl_event tmp;
         cl_int error;
-        void * result = CL_HPP_WRAPPER_NS::clEnqueueMapBuffer(
+        void * result = CL_HPP_OPENCL_API_NAMESPACE::clEnqueueMapBuffer(
             object_, buffer(), blocking, flags, offset, size,
             (events != NULL) ? (cl_uint) events->size() : 0,
             (events != NULL && events->size() > 0) ? (cl_event*) &events->front() : NULL,
@@ -8169,7 +8168,7 @@ public:
     {
         cl_event tmp;
         cl_int error;
-        void * result = CL_HPP_WRAPPER_NS::clEnqueueMapImage(
+        void * result = CL_HPP_OPENCL_API_NAMESPACE::clEnqueueMapImage(
             object_, buffer(), blocking, flags,
             origin.data(), 
             region.data(),
@@ -8279,7 +8278,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueUnmapMemObject(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueUnmapMemObject(
                 object_, memory(), mapped_ptr,
                 (events != NULL) ? (cl_uint) events->size() : 0,
                 (events != NULL && events->size() > 0) ? (cl_event*) &events->front() : NULL,
@@ -8306,7 +8305,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueSVMUnmap(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueSVMUnmap(
             object_, static_cast<void*>(ptr),
             (events != NULL) ? (cl_uint)events->size() : 0,
             (events != NULL && events->size() > 0) ? (cl_event*)&events->front() : NULL,
@@ -8331,7 +8330,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueSVMUnmap(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueSVMUnmap(
             object_, static_cast<void*>(ptr.get()),
             (events != NULL) ? (cl_uint)events->size() : 0,
             (events != NULL && events->size() > 0) ? (cl_event*)&events->front() : NULL,
@@ -8356,7 +8355,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueSVMUnmap(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueSVMUnmap(
             object_, static_cast<void*>(container.data()),
             (events != NULL) ? (cl_uint)events->size() : 0,
             (events != NULL && events->size() > 0) ? (cl_event*)&events->front() : NULL,
@@ -8388,7 +8387,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueMarkerWithWaitList(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueMarkerWithWaitList(
                 object_,
                 (events != NULL) ? (cl_uint) events->size() : 0,
                 (events != NULL && events->size() > 0) ? (cl_event*) &events->front() : NULL,
@@ -8418,7 +8417,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueBarrierWithWaitList(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueBarrierWithWaitList(
                 object_,
                 (events != NULL) ? (cl_uint) events->size() : 0,
                 (events != NULL && events->size() > 0) ? (cl_event*) &events->front() : NULL,
@@ -8451,7 +8450,7 @@ public:
         }
         
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueMigrateMemObjects(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueMigrateMemObjects(
                 object_, 
                 (cl_uint)memObjects.size(), 
                 localMemObjects.data(),
@@ -8600,7 +8599,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueNDRangeKernel(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueNDRangeKernel(
                 object_, kernel(), (cl_uint) global.dimensions(),
                 offset.dimensions() != 0 ? (const size_type*) offset : NULL,
                 (const size_type*) global,
@@ -8624,7 +8623,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueTask(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueTask(
                 object_, kernel(),
                 (events != NULL) ? (cl_uint) events->size() : 0,
                 (events != NULL && events->size() > 0) ? (cl_event*) &events->front() : NULL,
@@ -8657,7 +8656,7 @@ public:
         
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueNativeKernel(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueNativeKernel(
                 object_, userFptr, args.first, args.second,
                 (mem_objects != NULL) ? (cl_uint) mem_objects->size() : 0,
                 mems.data(),
@@ -8682,7 +8681,7 @@ public:
     {
         cl_event tmp;
         cl_int err = detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueMarker(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueMarker(
                 object_, 
                 (event != NULL) ? &tmp : NULL),
             __ENQUEUE_MARKER_ERR);
@@ -8697,7 +8696,7 @@ public:
     cl_int enqueueWaitForEvents(const vector<Event>& events) const CL_API_SUFFIX__VERSION_1_1_DEPRECATED
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueWaitForEvents(
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueWaitForEvents(
                 object_,
                 (cl_uint) events.size(),
                 events.size() > 0 ? (const cl_event*) &events.front() : NULL),
@@ -8712,7 +8711,7 @@ public:
      {
         cl_event tmp;
         cl_int err = detail::errHandler(
-             CL_HPP_WRAPPER_NS::clEnqueueAcquireGLObjects(
+             CL_HPP_OPENCL_API_NAMESPACE::clEnqueueAcquireGLObjects(
                  object_,
                  (mem_objects != NULL) ? (cl_uint) mem_objects->size() : 0,
                  (mem_objects != NULL && mem_objects->size() > 0) ? (const cl_mem *) &mem_objects->front(): NULL,
@@ -8734,7 +8733,7 @@ public:
      {
         cl_event tmp;
         cl_int err = detail::errHandler(
-             CL_HPP_WRAPPER_NS::clEnqueueReleaseGLObjects(
+             CL_HPP_OPENCL_API_NAMESPACE::clEnqueueReleaseGLObjects(
                  object_,
                  (mem_objects != NULL) ? (cl_uint) mem_objects->size() : 0,
                  (mem_objects != NULL && mem_objects->size() > 0) ? (const cl_mem *) &mem_objects->front(): NULL,
@@ -8834,7 +8833,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *PFN_clEnqueueReleaseD3D10ObjectsKHR)(
     cl_int enqueueBarrier() const CL_API_SUFFIX__VERSION_1_1_DEPRECATED
     {
         return detail::errHandler(
-            CL_HPP_WRAPPER_NS::clEnqueueBarrier(object_),
+            CL_HPP_OPENCL_API_NAMESPACE::clEnqueueBarrier(object_),
             __ENQUEUE_BARRIER_ERR);
     }
 #endif // CL_USE_DEPRECATED_OPENCL_1_1_APIS
@@ -8893,7 +8892,7 @@ public:
 
         cl_queue_properties queue_properties[] = {
             CL_QUEUE_PROPERTIES, mergedProperties, 0 };
-        object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
             context(), device(), queue_properties, &error);
 
         detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -8917,7 +8916,7 @@ public:
             CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE | CL_QUEUE_ON_DEVICE | static_cast<cl_command_queue_properties>(properties);
         cl_queue_properties queue_properties[] = {
             CL_QUEUE_PROPERTIES, mergedProperties, 0 };
-        object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
             context(), device(), queue_properties, &error);
 
         detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -8944,7 +8943,7 @@ public:
             CL_QUEUE_PROPERTIES, mergedProperties,
             CL_QUEUE_SIZE, queueSize, 
             0 };
-        object_ = CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
             context(), device(), queue_properties, &error);
 
         detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -9001,7 +9000,7 @@ public:
     {
         return detail::errHandler(
             detail::getInfo(
-            &CL_HPP_WRAPPER_NS::clGetCommandQueueInfo, object_, name, param),
+            &CL_HPP_OPENCL_API_NAMESPACE::clGetCommandQueueInfo, object_, name, param),
             __GET_COMMAND_QUEUE_INFO_ERR);
     }
 
@@ -9037,7 +9036,7 @@ public:
             CL_QUEUE_PROPERTIES, properties,
             0 };
         DeviceCommandQueue deviceQueue(
-            CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+            CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
             context(), device(), queue_properties, &error));
 
         detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -9065,7 +9064,7 @@ public:
             CL_QUEUE_PROPERTIES, properties,
             0 };
         DeviceCommandQueue deviceQueue(
-            CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+            CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
             context(), device(), queue_properties, &error));
 
         detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -9094,7 +9093,7 @@ public:
             CL_QUEUE_SIZE, queueSize,
             0 };
         DeviceCommandQueue deviceQueue(
-            CL_HPP_WRAPPER_NS::clCreateCommandQueueWithProperties(
+            CL_HPP_OPENCL_API_NAMESPACE::clCreateCommandQueueWithProperties(
                 context(), device(), queue_properties, &error));
 
         detail::errHandler(error, __CREATE_COMMAND_QUEUE_WITH_PROPERTIES_ERR);
@@ -9177,9 +9176,9 @@ Buffer::Buffer(
     size_type size = sizeof(DataType)*(endIterator - startIterator);
 
     if( useHostPtr ) {
-        object_ = CL_HPP_WRAPPER_NS::clCreateBuffer(context(), flags, size, static_cast<DataType*>(&*startIterator), &error);
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateBuffer(context(), flags, size, static_cast<DataType*>(&*startIterator), &error);
     } else {
-        object_ = CL_HPP_WRAPPER_NS::clCreateBuffer(context(), flags, size, 0, &error);
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateBuffer(context(), flags, size, 0, &error);
     }
 
     detail::errHandler(error, __CREATE_BUFFER_ERR);
@@ -9230,10 +9229,10 @@ Buffer::Buffer(
     Context context = queue.getInfo<CL_QUEUE_CONTEXT>();
 
     if (useHostPtr) {
-        object_ = CL_HPP_WRAPPER_NS::clCreateBuffer(context(), flags, size, static_cast<DataType*>(&*startIterator), &error);
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateBuffer(context(), flags, size, static_cast<DataType*>(&*startIterator), &error);
     }
     else {
-        object_ = CL_HPP_WRAPPER_NS::clCreateBuffer(context(), flags, size, 0, &error);
+        object_ = CL_HPP_OPENCL_API_NAMESPACE::clCreateBuffer(context(), flags, size, 0, &error);
     }
 
     detail::errHandler(error, __CREATE_BUFFER_ERR);
@@ -9305,7 +9304,7 @@ inline void* enqueueMapBuffer(
         *err = error;
     }
 
-    void * result = CL_HPP_WRAPPER_NS::clEnqueueMapBuffer(
+    void * result = CL_HPP_OPENCL_API_NAMESPACE::clEnqueueMapBuffer(
             queue(), buffer(), blocking, flags, offset, size,
             (events != NULL) ? (cl_uint) events->size() : 0,
             (events != NULL && events->size() > 0) ? (cl_event*) &events->front() : NULL,
@@ -9409,7 +9408,7 @@ inline cl_int enqueueUnmapMemObject(
 
     cl_event tmp;
     cl_int err = detail::errHandler(
-        CL_HPP_WRAPPER_NS::clEnqueueUnmapMemObject(
+        CL_HPP_OPENCL_API_NAMESPACE::clEnqueueUnmapMemObject(
         queue(), memory(), mapped_ptr,
         (events != NULL) ? (cl_uint)events->size() : 0,
         (events != NULL && events->size() > 0) ? (cl_event*)&events->front() : NULL,
