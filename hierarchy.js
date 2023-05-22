@@ -21,15 +21,18 @@ var hierarchy =
     [ "cl::SVMAllocator< T, SVMTrait >::rebind< U >", "structcl_1_1_s_v_m_allocator_1_1rebind.html", null ],
     [ "cl::SVMAllocator< void, SVMTrait >::rebind< U >", "structcl_1_1_s_v_m_allocator_3_01void_00_01_s_v_m_trait_01_4_1_1rebind.html", null ],
     [ "cl::detail::ReferenceHandler< T >", "structcl_1_1detail_1_1_reference_handler.html", null ],
+    [ "cl::detail::ReferenceHandler< cl_command_buffer_khr >", "structcl_1_1detail_1_1_reference_handler_3_01cl__command__buffer__khr_01_4.html", null ],
     [ "cl::detail::ReferenceHandler< cl_command_queue >", "structcl_1_1detail_1_1_reference_handler_3_01cl__command__queue_01_4.html", null ],
     [ "cl::detail::ReferenceHandler< cl_context >", "structcl_1_1detail_1_1_reference_handler_3_01cl__context_01_4.html", null ],
     [ "cl::detail::ReferenceHandler< cl_device_id >", "structcl_1_1detail_1_1_reference_handler_3_01cl__device__id_01_4.html", null ],
     [ "cl::detail::ReferenceHandler< cl_event >", "structcl_1_1detail_1_1_reference_handler_3_01cl__event_01_4.html", null ],
     [ "cl::detail::ReferenceHandler< cl_kernel >", "structcl_1_1detail_1_1_reference_handler_3_01cl__kernel_01_4.html", null ],
     [ "cl::detail::ReferenceHandler< cl_mem >", "structcl_1_1detail_1_1_reference_handler_3_01cl__mem_01_4.html", null ],
+    [ "cl::detail::ReferenceHandler< cl_mutable_command_khr >", "structcl_1_1detail_1_1_reference_handler_3_01cl__mutable__command__khr_01_4.html", null ],
     [ "cl::detail::ReferenceHandler< cl_platform_id >", "structcl_1_1detail_1_1_reference_handler_3_01cl__platform__id_01_4.html", null ],
     [ "cl::detail::ReferenceHandler< cl_program >", "structcl_1_1detail_1_1_reference_handler_3_01cl__program_01_4.html", null ],
     [ "cl::detail::ReferenceHandler< cl_sampler >", "structcl_1_1detail_1_1_reference_handler_3_01cl__sampler_01_4.html", null ],
+    [ "cl::detail::ReferenceHandler< cl_semaphore_khr >", "structcl_1_1detail_1_1_reference_handler_3_01cl__semaphore__khr_01_4.html", null ],
     [ "cl::SVMAllocator< T, SVMTrait >", "classcl_1_1_s_v_m_allocator.html", null ],
     [ "cl::SVMAllocator< void, SVMTrait >", "classcl_1_1_s_v_m_allocator_3_01void_00_01_s_v_m_trait_01_4.html", null ],
     [ "cl::SVMTraitAtomic< Trait >", "classcl_1_1_s_v_m_trait_atomic.html", null ],
@@ -40,6 +43,9 @@ var hierarchy =
     [ "cl::SVMTraitReadWrite< Trait >", "classcl_1_1_s_v_m_trait_read_write.html", null ],
     [ "cl::SVMTraitWriteOnly< Trait >", "classcl_1_1_s_v_m_trait_write_only.html", null ],
     [ "cl::detail::Wrapper< T >", "classcl_1_1detail_1_1_wrapper.html", null ],
+    [ "cl::detail::Wrapper< cl_command_buffer_khr >", "classcl_1_1detail_1_1_wrapper.html", [
+      [ "cl::CommandBufferKhr", "classcl_1_1_command_buffer_khr.html", null ]
+    ] ],
     [ "cl::detail::Wrapper< cl_command_queue >", "classcl_1_1detail_1_1_wrapper.html", [
       [ "cl::CommandQueue", "classcl_1_1_command_queue.html", null ],
       [ "cl::DeviceCommandQueue", "classcl_1_1_device_command_queue.html", null ]
@@ -80,6 +86,9 @@ var hierarchy =
         [ "cl::Pipe", "classcl_1_1_pipe.html", null ]
       ] ]
     ] ],
+    [ "cl::detail::Wrapper< cl_mutable_command_khr >", "classcl_1_1detail_1_1_wrapper.html", [
+      [ "cl::MutableCommandKhr", "classcl_1_1_mutable_command_khr.html", null ]
+    ] ],
     [ "cl::detail::Wrapper< cl_platform_id >", "classcl_1_1detail_1_1_wrapper.html", [
       [ "cl::Platform", "classcl_1_1_platform.html", null ]
     ] ],
@@ -88,5 +97,8 @@ var hierarchy =
     ] ],
     [ "cl::detail::Wrapper< cl_sampler >", "classcl_1_1detail_1_1_wrapper.html", [
       [ "cl::Sampler", "classcl_1_1_sampler.html", null ]
+    ] ],
+    [ "cl::detail::Wrapper< cl_semaphore_khr >", "classcl_1_1detail_1_1_wrapper.html", [
+      [ "cl::Semaphore", "classcl_1_1_semaphore.html", null ]
     ] ]
 ];

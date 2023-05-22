@@ -1,0 +1,6 @@
+build/
+external/
+include/
+install/
+tests/
+log.txt

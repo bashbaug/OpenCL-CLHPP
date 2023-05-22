@@ -1485,7 +1485,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l01818" name="l01818"></a><span class="lineno"> 1818</span> </div>
 <div class="line"><a id="l01819" name="l01819"></a><span class="lineno"> 1819</span><span class="preprocessor">#if defined(cl_khr_command_buffer_mutable_dispatch)</span></div>
 <div class="line"><a id="l01820" name="l01820"></a><span class="lineno"> 1820</span>CL_HPP_DECLARE_PARAM_TRAITS_(cl_mutable_command_info_khr, CL_MUTABLE_COMMAND_COMMAND_QUEUE_KHR, <a class="code hl_class" href="classcl_1_1_command_queue.html">CommandQueue</a>)</div>
-<div class="line"><a id="l01821" name="l01821"></a><span class="lineno"> 1821</span>CL_HPP_DECLARE_PARAM_TRAITS_(cl_mutable_command_info_khr, CL_MUTABLE_COMMAND_COMMAND_BUFFER_KHR, CommandBufferKhr)</div>
+<div class="line"><a id="l01821" name="l01821"></a><span class="lineno"> 1821</span>CL_HPP_DECLARE_PARAM_TRAITS_(cl_mutable_command_info_khr, CL_MUTABLE_COMMAND_COMMAND_BUFFER_KHR, <a class="code hl_class" href="classcl_1_1_command_buffer_khr.html">CommandBufferKhr</a>)</div>
 <div class="line"><a id="l01822" name="l01822"></a><span class="lineno"> 1822</span>CL_HPP_DECLARE_PARAM_TRAITS_(cl_mutable_command_info_khr, CL_MUTABLE_COMMAND_COMMAND_TYPE_KHR, cl_command_type)</div>
 <div class="line"><a id="l01823" name="l01823"></a><span class="lineno"> 1823</span>CL_HPP_DECLARE_PARAM_TRAITS_(cl_mutable_command_info_khr, CL_MUTABLE_DISPATCH_PROPERTIES_ARRAY_KHR, cl::vector&lt;cl_ndrange_kernel_command_properties_khr&gt;)</div>
 <div class="line"><a id="l01824" name="l01824"></a><span class="lineno"> 1824</span>CL_HPP_DECLARE_PARAM_TRAITS_(cl_mutable_command_info_khr, CL_MUTABLE_DISPATCH_KERNEL_KHR, cl_kernel)</div>
@@ -1641,7 +1641,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l01998" name="l01998"></a><span class="lineno"> 1998</span> </div>
 <div class="line"><a id="l01999" name="l01999"></a><span class="lineno"> 1999</span><span class="preprocessor">#ifdef cl_khr_semaphore</span></div>
 <div class="line"><a id="l02000" name="l02000"></a><span class="lineno"> 2000</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a id="l02001" name="l02001"></a><span class="lineno"> 2001</span><span class="keyword">struct </span><a class="code hl_struct" href="structcl_1_1detail_1_1_reference_handler.html">ReferenceHandler</a>&lt;cl_semaphore_khr&gt;</div>
+<div class="line"><a id="l02001" name="l02001"></a><span class="lineno"><a class="line" href="structcl_1_1detail_1_1_reference_handler_3_01cl__semaphore__khr_01_4.html"> 2001</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcl_1_1detail_1_1_reference_handler.html">ReferenceHandler</a>&lt;cl_semaphore_khr&gt;</div>
 <div class="line"><a id="l02002" name="l02002"></a><span class="lineno"> 2002</span>{</div>
 <div class="line"><a id="l02003" name="l02003"></a><span class="lineno"> 2003</span>    <span class="keyword">static</span> cl_int retain(cl_semaphore_khr semaphore)</div>
 <div class="line"><a id="l02004" name="l02004"></a><span class="lineno"> 2004</span>    { </div>
@@ -1664,7 +1664,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l02021" name="l02021"></a><span class="lineno"> 2021</span><span class="preprocessor">#endif </span><span class="comment">// cl_khr_semaphore</span></div>
 <div class="line"><a id="l02022" name="l02022"></a><span class="lineno"> 2022</span><span class="preprocessor">#if defined(cl_khr_command_buffer)</span></div>
 <div class="line"><a id="l02023" name="l02023"></a><span class="lineno"> 2023</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a id="l02024" name="l02024"></a><span class="lineno"> 2024</span><span class="keyword">struct </span>ReferenceHandler&lt;cl_command_buffer_khr&gt;</div>
+<div class="line"><a id="l02024" name="l02024"></a><span class="lineno"><a class="line" href="structcl_1_1detail_1_1_reference_handler_3_01cl__command__buffer__khr_01_4.html"> 2024</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcl_1_1detail_1_1_reference_handler.html">ReferenceHandler</a>&lt;cl_command_buffer_khr&gt;</div>
 <div class="line"><a id="l02025" name="l02025"></a><span class="lineno"> 2025</span>{</div>
 <div class="line"><a id="l02026" name="l02026"></a><span class="lineno"> 2026</span>    <span class="keyword">static</span> cl_int retain(cl_command_buffer_khr cmdBufferKhr)</div>
 <div class="line"><a id="l02027" name="l02027"></a><span class="lineno"> 2027</span>    {</div>
@@ -1684,7 +1684,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l02041" name="l02041"></a><span class="lineno"> 2041</span>};</div>
 <div class="line"><a id="l02042" name="l02042"></a><span class="lineno"> 2042</span> </div>
 <div class="line"><a id="l02043" name="l02043"></a><span class="lineno"> 2043</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a id="l02044" name="l02044"></a><span class="lineno"> 2044</span><span class="keyword">struct </span>ReferenceHandler&lt;cl_mutable_command_khr&gt;</div>
+<div class="line"><a id="l02044" name="l02044"></a><span class="lineno"><a class="line" href="structcl_1_1detail_1_1_reference_handler_3_01cl__mutable__command__khr_01_4.html"> 2044</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcl_1_1detail_1_1_reference_handler.html">ReferenceHandler</a>&lt;cl_mutable_command_khr&gt;</div>
 <div class="line"><a id="l02045" name="l02045"></a><span class="lineno"> 2045</span>{</div>
 <div class="line"><a id="l02046" name="l02046"></a><span class="lineno"> 2046</span>    <span class="comment">// cl_mutable_command_khr does not have retain().</span></div>
 <div class="line"><a id="l02047" name="l02047"></a><span class="lineno"> 2047</span>    <span class="keyword">static</span> cl_int retain(cl_mutable_command_khr)</div>
@@ -2486,7 +2486,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l03008" name="l03008"></a><span class="lineno"> 3008</span><span class="preprocessor">#endif </span><span class="comment">// defined (CL_HPP_TARGET_OPENCL_VERSION &gt;= 120)</span></div>
 <div class="line"><a id="l03009" name="l03009"></a><span class="lineno"> 3009</span> </div>
 <div class="line"><a id="l03010" name="l03010"></a><span class="lineno"> 3010</span><span class="preprocessor">#if defined(cl_ext_device_fission)</span></div>
-<div class="line"><a id="l03012" name="l03012"></a><span class="lineno"> 3012</span><span class="keyword">inline</span> cl_int <a class="code hl_function" href="classcl_1_1_device.html#ab60bfd190bf8f82cb8f0adb0a869a2f2">Device::createSubDevices</a>(<span class="keyword">const</span> cl_device_partition_property_ext* properties,</div>
+<div class="line"><a id="l03012" name="l03012"></a><span class="lineno"><a class="line" href="classcl_1_1_device.html#a4396b8f0e0edfb483f899e945171e2a4"> 3012</a></span><span class="keyword">inline</span> cl_int <a class="code hl_function" href="classcl_1_1_device.html#ab60bfd190bf8f82cb8f0adb0a869a2f2">Device::createSubDevices</a>(<span class="keyword">const</span> cl_device_partition_property_ext* properties,</div>
 <div class="line"><a id="l03013" name="l03013"></a><span class="lineno"> 3013</span>                        vector&lt;Device&gt;* devices)</div>
 <div class="line"><a id="l03014" name="l03014"></a><span class="lineno"> 3014</span>{</div>
 <div class="line"><a id="l03015" name="l03015"></a><span class="lineno"> 3015</span>    <span class="keyword">typedef</span> CL_API_ENTRY cl_int(CL_API_CALL * PFN_clCreateSubDevicesEXT)(</div>
@@ -2498,7 +2498,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l03021" name="l03021"></a><span class="lineno"> 3021</span>    <span class="keyword">static</span> PFN_clCreateSubDevicesEXT pfn_clCreateSubDevicesEXT = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l03022" name="l03022"></a><span class="lineno"> 3022</span><span class="preprocessor">#if CL_HPP_TARGET_OPENCL_VERSION &gt;= 120</span></div>
 <div class="line"><a id="l03023" name="l03023"></a><span class="lineno"> 3023</span>    <a class="code hl_class" href="classcl_1_1_device.html">cl::Device</a> device(object_);</div>
-<div class="line"><a id="l03024" name="l03024"></a><span class="lineno"> 3024</span>    cl_platform_id platform = device.getInfo&lt;CL_DEVICE_PLATFORM&gt;()();</div>
+<div class="line"><a id="l03024" name="l03024"></a><span class="lineno"> 3024</span>    cl_platform_id platform = device.<a class="code hl_function" href="classcl_1_1_device.html#a575493c25049dae087540ed8a65efd6d">getInfo</a>&lt;CL_DEVICE_PLATFORM&gt;()();</div>
 <div class="line"><a id="l03025" name="l03025"></a><span class="lineno"> 3025</span>    CL_HPP_INIT_CL_EXT_FCN_PTR_PLATFORM_(platform, clCreateSubDevicesEXT);</div>
 <div class="line"><a id="l03026" name="l03026"></a><span class="lineno"> 3026</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l03027" name="l03027"></a><span class="lineno"> 3027</span><span class="preprocessor">#if CL_HPP_MINIMUM_OPENCL_VERSION &lt; 120</span></div>
@@ -2540,7 +2540,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l03063" name="l03063"></a><span class="lineno"> 3063</span><span class="preprocessor">#endif </span><span class="comment">// defined(cl_ext_device_fission)</span></div>
 <div class="line"><a id="l03064" name="l03064"></a><span class="lineno"> 3064</span> </div>
 <div class="line"><a id="l03065" name="l03065"></a><span class="lineno"> 3065</span>CL_HPP_DEFINE_STATIC_MEMBER_ std::once_flag Platform::default_initialized_;</div>
-<div class="line"><a id="l03066" name="l03066"></a><span class="lineno"> 3066</span>CL_HPP_DEFINE_STATIC_MEMBER_ Platform Platform::default_;</div>
+<div class="line"><a id="l03066" name="l03066"></a><span class="lineno"> 3066</span>CL_HPP_DEFINE_STATIC_MEMBER_ <a class="code hl_class" href="classcl_1_1_platform.html">Platform</a> Platform::default_;</div>
 <div class="line"><a id="l03067" name="l03067"></a><span class="lineno"> 3067</span>CL_HPP_DEFINE_STATIC_MEMBER_ cl_int Platform::default_error_ = CL_SUCCESS;</div>
 <div class="line"><a id="l03068" name="l03068"></a><span class="lineno"> 3068</span> </div>
 <div class="line"><a id="l03069" name="l03069"></a><span class="lineno"> 3069</span> </div>
@@ -8891,12 +8891,12 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l10483" name="l10483"></a><span class="lineno">10483</span>};</div>
 <div class="line"><a id="l10484" name="l10484"></a><span class="lineno">10484</span><span class="preprocessor">#endif </span><span class="comment">// cl_khr_external_semaphore</span></div>
 <div class="line"><a id="l10485" name="l10485"></a><span class="lineno">10485</span> </div>
-<div class="line"><a id="l10486" name="l10486"></a><span class="lineno">10486</span><span class="keyword">class </span>Semaphore : <span class="keyword">public</span> detail::Wrapper&lt;cl_semaphore_khr&gt;</div>
+<div class="line"><a id="l10486" name="l10486"></a><span class="lineno"><a class="line" href="classcl_1_1_semaphore.html">10486</a></span><span class="keyword">class </span><a class="code hl_class" href="classcl_1_1_semaphore.html">Semaphore</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcl_1_1detail_1_1_wrapper.html">detail::Wrapper</a>&lt;cl_semaphore_khr&gt;</div>
 <div class="line"><a id="l10487" name="l10487"></a><span class="lineno">10487</span>{</div>
 <div class="line"><a id="l10488" name="l10488"></a><span class="lineno">10488</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l10489" name="l10489"></a><span class="lineno">10489</span>    Semaphore() : detail::Wrapper&lt;cl_type&gt;() {}</div>
-<div class="line"><a id="l10490" name="l10490"></a><span class="lineno">10490</span>    Semaphore(</div>
-<div class="line"><a id="l10491" name="l10491"></a><span class="lineno">10491</span>        <span class="keyword">const</span> Context &amp;context,</div>
+<div class="line"><a id="l10489" name="l10489"></a><span class="lineno">10489</span>    <a class="code hl_class" href="classcl_1_1_semaphore.html">Semaphore</a>() : <a class="code hl_class" href="classcl_1_1detail_1_1_wrapper.html">detail::Wrapper&lt;cl_type&gt;</a>() {}</div>
+<div class="line"><a id="l10490" name="l10490"></a><span class="lineno">10490</span>    <a class="code hl_class" href="classcl_1_1_semaphore.html">Semaphore</a>(</div>
+<div class="line"><a id="l10491" name="l10491"></a><span class="lineno">10491</span>        <span class="keyword">const</span> <a class="code hl_class" href="classcl_1_1_context.html">Context</a> &amp;context,</div>
 <div class="line"><a id="l10492" name="l10492"></a><span class="lineno">10492</span>        <span class="keyword">const</span> vector&lt;cl_semaphore_properties_khr&gt;&amp; sema_props,</div>
 <div class="line"><a id="l10493" name="l10493"></a><span class="lineno">10493</span>        cl_int *err = <span class="keyword">nullptr</span>) </div>
 <div class="line"><a id="l10494" name="l10494"></a><span class="lineno">10494</span>    {</div>
@@ -8919,14 +8919,14 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l10511" name="l10511"></a><span class="lineno">10511</span>            *err = error;</div>
 <div class="line"><a id="l10512" name="l10512"></a><span class="lineno">10512</span>        }</div>
 <div class="line"><a id="l10513" name="l10513"></a><span class="lineno">10513</span>    }</div>
-<div class="line"><a id="l10514" name="l10514"></a><span class="lineno">10514</span>    Semaphore(</div>
+<div class="line"><a id="l10514" name="l10514"></a><span class="lineno">10514</span>    <a class="code hl_class" href="classcl_1_1_semaphore.html">Semaphore</a>(</div>
 <div class="line"><a id="l10515" name="l10515"></a><span class="lineno">10515</span>        <span class="keyword">const</span> vector&lt;cl_semaphore_properties_khr&gt;&amp; sema_props,</div>
-<div class="line"><a id="l10516" name="l10516"></a><span class="lineno">10516</span>        cl_int* err = <span class="keyword">nullptr</span>):Semaphore(Context::getDefault(err), sema_props, err) {}</div>
+<div class="line"><a id="l10516" name="l10516"></a><span class="lineno">10516</span>        cl_int* err = <span class="keyword">nullptr</span>):<a class="code hl_class" href="classcl_1_1_semaphore.html">Semaphore</a>(<a class="code hl_function" href="classcl_1_1_context.html#a47b86434a46af5c627146440a20b9467">Context::getDefault</a>(err), sema_props, err) {}</div>
 <div class="line"><a id="l10517" name="l10517"></a><span class="lineno">10517</span>    </div>
-<div class="line"><a id="l10518" name="l10518"></a><span class="lineno">10518</span>    <span class="keyword">explicit</span> Semaphore(<span class="keyword">const</span> cl_semaphore_khr&amp; semaphore, <span class="keywordtype">bool</span> retainObject = <span class="keyword">false</span>) :</div>
-<div class="line"><a id="l10519" name="l10519"></a><span class="lineno">10519</span>        detail::Wrapper&lt;cl_type&gt;(semaphore, retainObject) {}</div>
-<div class="line"><a id="l10520" name="l10520"></a><span class="lineno">10520</span>    Semaphore&amp; operator = (<span class="keyword">const</span> cl_semaphore_khr&amp; rhs) {</div>
-<div class="line"><a id="l10521" name="l10521"></a><span class="lineno">10521</span>        detail::Wrapper&lt;cl_type&gt;::operator=(rhs);</div>
+<div class="line"><a id="l10518" name="l10518"></a><span class="lineno">10518</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classcl_1_1_semaphore.html">Semaphore</a>(<span class="keyword">const</span> cl_semaphore_khr&amp; semaphore, <span class="keywordtype">bool</span> retainObject = <span class="keyword">false</span>) :</div>
+<div class="line"><a id="l10519" name="l10519"></a><span class="lineno">10519</span>        <a class="code hl_class" href="classcl_1_1detail_1_1_wrapper.html">detail::Wrapper&lt;cl_type&gt;</a>(semaphore, retainObject) {}</div>
+<div class="line"><a id="l10520" name="l10520"></a><span class="lineno">10520</span>    <a class="code hl_class" href="classcl_1_1_semaphore.html">Semaphore</a>&amp; operator = (<span class="keyword">const</span> cl_semaphore_khr&amp; rhs) {</div>
+<div class="line"><a id="l10521" name="l10521"></a><span class="lineno">10521</span>        <a class="code hl_class" href="classcl_1_1detail_1_1_wrapper.html">detail::Wrapper&lt;cl_type&gt;::operator=</a>(rhs);</div>
 <div class="line"><a id="l10522" name="l10522"></a><span class="lineno">10522</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a id="l10523" name="l10523"></a><span class="lineno">10523</span>    }</div>
 <div class="line"><a id="l10524" name="l10524"></a><span class="lineno">10524</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
@@ -8942,10 +8942,10 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l10534" name="l10534"></a><span class="lineno">10534</span>            __GET_SEMAPHORE_KHR_INFO_ERR);</div>
 <div class="line"><a id="l10535" name="l10535"></a><span class="lineno">10535</span>    }</div>
 <div class="line"><a id="l10536" name="l10536"></a><span class="lineno">10536</span>    <span class="keyword">template</span> &lt;cl_semaphore_info_khr name&gt; <span class="keyword">typename</span></div>
-<div class="line"><a id="l10537" name="l10537"></a><span class="lineno">10537</span>    detail::param_traits&lt;detail::cl_semaphore_info_khr, name&gt;::param_type</div>
+<div class="line"><a id="l10537" name="l10537"></a><span class="lineno">10537</span>    <a class="code hl_struct" href="structcl_1_1detail_1_1param__traits.html">detail::param_traits&lt;detail::cl_semaphore_info_khr, name&gt;::param_type</a></div>
 <div class="line"><a id="l10538" name="l10538"></a><span class="lineno">10538</span>    getInfo(cl_int* err = <span class="keyword">nullptr</span>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l10539" name="l10539"></a><span class="lineno">10539</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l10540" name="l10540"></a><span class="lineno">10540</span>        <span class="keyword">typename</span> detail::param_traits&lt;</div>
+<div class="line"><a id="l10540" name="l10540"></a><span class="lineno">10540</span>        <span class="keyword">typename</span> <a class="code hl_struct" href="structcl_1_1detail_1_1param__traits.html">detail::param_traits</a>&lt;</div>
 <div class="line"><a id="l10541" name="l10541"></a><span class="lineno">10541</span>            detail::cl_semaphore_info_khr, name&gt;::param_type param;</div>
 <div class="line"><a id="l10542" name="l10542"></a><span class="lineno">10542</span>        cl_int result = getInfo(name, &amp;param);</div>
 <div class="line"><a id="l10543" name="l10543"></a><span class="lineno">10543</span>        <span class="keywordflow">if</span> (err != <span class="keyword">nullptr</span>) {</div>
@@ -8957,7 +8957,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l10549" name="l10549"></a><span class="lineno">10549</span><span class="preprocessor">#ifdef cl_khr_external_semaphore</span></div>
 <div class="line"><a id="l10550" name="l10550"></a><span class="lineno">10550</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l10551" name="l10551"></a><span class="lineno">10551</span>    cl_int getHandleForTypeKHR(</div>
-<div class="line"><a id="l10552" name="l10552"></a><span class="lineno">10552</span>        <span class="keyword">const</span> Device&amp; device, cl_external_semaphore_handle_type_khr name, T* param)<span class="keyword"> const</span></div>
+<div class="line"><a id="l10552" name="l10552"></a><span class="lineno">10552</span>        <span class="keyword">const</span> <a class="code hl_class" href="classcl_1_1_device.html">Device</a>&amp; device, cl_external_semaphore_handle_type_khr name, T* param)<span class="keyword"> const</span></div>
 <div class="line"><a id="l10553" name="l10553"></a><span class="lineno">10553</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l10554" name="l10554"></a><span class="lineno">10554</span>        <span class="keywordflow">if</span> (pfn_clGetSemaphoreHandleForTypeKHR == <span class="keyword">nullptr</span>) {</div>
 <div class="line"><a id="l10555" name="l10555"></a><span class="lineno">10555</span>            <span class="keywordflow">return</span> detail::errHandler(CL_INVALID_OPERATION,</div>
@@ -8971,10 +8971,10 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l10563" name="l10563"></a><span class="lineno">10563</span>    }</div>
 <div class="line"><a id="l10564" name="l10564"></a><span class="lineno">10564</span> </div>
 <div class="line"><a id="l10565" name="l10565"></a><span class="lineno">10565</span>    <span class="keyword">template</span> &lt;cl_external_semaphore_handle_type_khr type&gt; <span class="keyword">typename</span></div>
-<div class="line"><a id="l10566" name="l10566"></a><span class="lineno">10566</span>    detail::param_traits&lt;detail::cl_external_semaphore_handle_type_khr, type&gt;::param_type</div>
-<div class="line"><a id="l10567" name="l10567"></a><span class="lineno">10567</span>        getHandleForTypeKHR(<span class="keyword">const</span> Device&amp; device, cl_int* err = <span class="keyword">nullptr</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l10566" name="l10566"></a><span class="lineno">10566</span>    <a class="code hl_struct" href="structcl_1_1detail_1_1param__traits.html">detail::param_traits&lt;detail::cl_external_semaphore_handle_type_khr, type&gt;::param_type</a></div>
+<div class="line"><a id="l10567" name="l10567"></a><span class="lineno">10567</span>        getHandleForTypeKHR(<span class="keyword">const</span> <a class="code hl_class" href="classcl_1_1_device.html">Device</a>&amp; device, cl_int* err = <span class="keyword">nullptr</span>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l10568" name="l10568"></a><span class="lineno">10568</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l10569" name="l10569"></a><span class="lineno">10569</span>        <span class="keyword">typename</span> detail::param_traits&lt;</div>
+<div class="line"><a id="l10569" name="l10569"></a><span class="lineno">10569</span>        <span class="keyword">typename</span> <a class="code hl_struct" href="structcl_1_1detail_1_1param__traits.html">detail::param_traits</a>&lt;</div>
 <div class="line"><a id="l10570" name="l10570"></a><span class="lineno">10570</span>        detail::cl_external_semaphore_handle_type_khr, type&gt;::param_type param;</div>
 <div class="line"><a id="l10571" name="l10571"></a><span class="lineno">10571</span>        cl_int result = getHandleForTypeKHR(device, type, &amp;param);</div>
 <div class="line"><a id="l10572" name="l10572"></a><span class="lineno">10572</span>        <span class="keywordflow">if</span> (err != <span class="keyword">nullptr</span>) {</div>
@@ -9005,11 +9005,11 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l10597" name="l10597"></a><span class="lineno">10597</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l10598" name="l10598"></a><span class="lineno">10598</span>    <span class="keyword">static</span> std::once_flag ext_init_;</div>
 <div class="line"><a id="l10599" name="l10599"></a><span class="lineno">10599</span> </div>
-<div class="line"><a id="l10600" name="l10600"></a><span class="lineno">10600</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> initExtensions(<span class="keyword">const</span> Context&amp; context)</div>
+<div class="line"><a id="l10600" name="l10600"></a><span class="lineno">10600</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> initExtensions(<span class="keyword">const</span> <a class="code hl_class" href="classcl_1_1_context.html">Context</a>&amp; context)</div>
 <div class="line"><a id="l10601" name="l10601"></a><span class="lineno">10601</span>    {</div>
 <div class="line"><a id="l10602" name="l10602"></a><span class="lineno">10602</span><span class="preprocessor">#if CL_HPP_TARGET_OPENCL_VERSION &gt;= 120</span></div>
-<div class="line"><a id="l10603" name="l10603"></a><span class="lineno">10603</span>        Device device = context.getInfo&lt;CL_CONTEXT_DEVICES&gt;().at(0);</div>
-<div class="line"><a id="l10604" name="l10604"></a><span class="lineno">10604</span>        cl_platform_id platform = device.getInfo&lt;CL_DEVICE_PLATFORM&gt;()();</div>
+<div class="line"><a id="l10603" name="l10603"></a><span class="lineno">10603</span>        <a class="code hl_class" href="classcl_1_1_device.html">Device</a> device = context.<a class="code hl_function" href="classcl_1_1_context.html#a979d15f9228089af2a657a523b1186e8">getInfo</a>&lt;CL_CONTEXT_DEVICES&gt;().at(0);</div>
+<div class="line"><a id="l10604" name="l10604"></a><span class="lineno">10604</span>        cl_platform_id platform = device.<a class="code hl_function" href="classcl_1_1_device.html#a575493c25049dae087540ed8a65efd6d">getInfo</a>&lt;CL_DEVICE_PLATFORM&gt;()();</div>
 <div class="line"><a id="l10605" name="l10605"></a><span class="lineno">10605</span>        CL_HPP_INIT_CL_EXT_FCN_PTR_PLATFORM_(platform, clCreateSemaphoreWithPropertiesKHR);</div>
 <div class="line"><a id="l10606" name="l10606"></a><span class="lineno">10606</span>        CL_HPP_INIT_CL_EXT_FCN_PTR_PLATFORM_(platform, clReleaseSemaphoreKHR);</div>
 <div class="line"><a id="l10607" name="l10607"></a><span class="lineno">10607</span>        CL_HPP_INIT_CL_EXT_FCN_PTR_PLATFORM_(platform, clRetainSemaphoreKHR);</div>
@@ -9054,7 +9054,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l10646" name="l10646"></a><span class="lineno">10646</span>    <span class="keyword">const</span> vector&lt;Semaphore&gt; &amp;sema_objects,</div>
 <div class="line"><a id="l10647" name="l10647"></a><span class="lineno">10647</span>    <span class="keyword">const</span> vector&lt;cl_semaphore_payload_khr&gt; &amp;sema_payloads,</div>
 <div class="line"><a id="l10648" name="l10648"></a><span class="lineno">10648</span>    <span class="keyword">const</span> vector&lt;Event&gt;* events_wait_list,</div>
-<div class="line"><a id="l10649" name="l10649"></a><span class="lineno">10649</span>    Event *event)<span class="keyword"> const</span></div>
+<div class="line"><a id="l10649" name="l10649"></a><span class="lineno">10649</span>    <a class="code hl_class" href="classcl_1_1_event.html">Event</a> *event)<span class="keyword"> const</span></div>
 <div class="line"><a id="l10650" name="l10650"></a><span class="lineno">10650</span><span class="keyword"></span>{</div>
 <div class="line"><a id="l10651" name="l10651"></a><span class="lineno">10651</span>    cl_event tmp;</div>
 <div class="line"><a id="l10652" name="l10652"></a><span class="lineno">10652</span>    cl_int err = CL_INVALID_OPERATION;</div>
@@ -9109,12 +9109,12 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l10701" name="l10701"></a><span class="lineno">10701</span><span class="preprocessor">#endif </span><span class="comment">// cl_khr_semaphore</span></div>
 <div class="line"><a id="l10702" name="l10702"></a><span class="lineno">10702</span> </div>
 <div class="line"><a id="l10703" name="l10703"></a><span class="lineno">10703</span><span class="preprocessor">#if defined(cl_khr_command_buffer)</span></div>
-<div class="line"><a id="l10707" name="l10707"></a><span class="lineno">10707</span><span class="keyword">class </span>CommandBufferKhr : <span class="keyword">public</span> detail::Wrapper&lt;cl_command_buffer_khr&gt;</div>
+<div class="line"><a id="l10707" name="l10707"></a><span class="lineno"><a class="line" href="classcl_1_1_command_buffer_khr.html">10707</a></span><span class="keyword">class </span><a class="code hl_class" href="classcl_1_1_command_buffer_khr.html">CommandBufferKhr</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcl_1_1detail_1_1_wrapper.html">detail::Wrapper</a>&lt;cl_command_buffer_khr&gt;</div>
 <div class="line"><a id="l10708" name="l10708"></a><span class="lineno">10708</span>{</div>
 <div class="line"><a id="l10709" name="l10709"></a><span class="lineno">10709</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l10711" name="l10711"></a><span class="lineno">10711</span>    CommandBufferKhr() : detail::Wrapper&lt;cl_type&gt;() { }</div>
+<div class="line"><a id="l10711" name="l10711"></a><span class="lineno"><a class="line" href="classcl_1_1_command_buffer_khr.html#ae12ca0b9ea98574ec36f93c618b82820">10711</a></span>    <a class="code hl_function" href="classcl_1_1_command_buffer_khr.html#ae12ca0b9ea98574ec36f93c618b82820">CommandBufferKhr</a>() : detail::Wrapper&lt;cl_type&gt;() { }</div>
 <div class="line"><a id="l10712" name="l10712"></a><span class="lineno">10712</span> </div>
-<div class="line"><a id="l10713" name="l10713"></a><span class="lineno">10713</span>    <span class="keyword">explicit</span> CommandBufferKhr(<span class="keyword">const</span> vector&lt;CommandQueue&gt; &amp;queues,</div>
+<div class="line"><a id="l10713" name="l10713"></a><span class="lineno">10713</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classcl_1_1_command_buffer_khr.html#ae12ca0b9ea98574ec36f93c618b82820">CommandBufferKhr</a>(<span class="keyword">const</span> vector&lt;CommandQueue&gt; &amp;queues,</div>
 <div class="line"><a id="l10714" name="l10714"></a><span class="lineno">10714</span>        cl_command_buffer_properties_khr properties = 0,</div>
 <div class="line"><a id="l10715" name="l10715"></a><span class="lineno">10715</span>        cl_int* errcode_ret = <span class="keyword">nullptr</span>)</div>
 <div class="line"><a id="l10716" name="l10716"></a><span class="lineno">10716</span>    {</div>
@@ -9143,10 +9143,10 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l10739" name="l10739"></a><span class="lineno">10739</span>        }</div>
 <div class="line"><a id="l10740" name="l10740"></a><span class="lineno">10740</span>    }</div>
 <div class="line"><a id="l10741" name="l10741"></a><span class="lineno">10741</span> </div>
-<div class="line"><a id="l10742" name="l10742"></a><span class="lineno">10742</span>    <span class="keyword">explicit</span> CommandBufferKhr(<span class="keyword">const</span> cl_command_buffer_khr&amp; commandBufferKhr, <span class="keywordtype">bool</span> retainObject = <span class="keyword">false</span>) :</div>
+<div class="line"><a id="l10742" name="l10742"></a><span class="lineno">10742</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classcl_1_1_command_buffer_khr.html#ae12ca0b9ea98574ec36f93c618b82820">CommandBufferKhr</a>(<span class="keyword">const</span> cl_command_buffer_khr&amp; commandBufferKhr, <span class="keywordtype">bool</span> retainObject = <span class="keyword">false</span>) :</div>
 <div class="line"><a id="l10743" name="l10743"></a><span class="lineno">10743</span>        detail::Wrapper&lt;cl_type&gt;(commandBufferKhr, retainObject) { }</div>
 <div class="line"><a id="l10744" name="l10744"></a><span class="lineno">10744</span> </div>
-<div class="line"><a id="l10745" name="l10745"></a><span class="lineno">10745</span>    CommandBufferKhr&amp; operator=(<span class="keyword">const</span> cl_command_buffer_khr&amp; rhs)</div>
+<div class="line"><a id="l10745" name="l10745"></a><span class="lineno">10745</span>    <a class="code hl_function" href="classcl_1_1_command_buffer_khr.html#ae12ca0b9ea98574ec36f93c618b82820">CommandBufferKhr</a>&amp; operator=(<span class="keyword">const</span> cl_command_buffer_khr&amp; rhs)</div>
 <div class="line"><a id="l10746" name="l10746"></a><span class="lineno">10746</span>    {</div>
 <div class="line"><a id="l10747" name="l10747"></a><span class="lineno">10747</span>        detail::Wrapper&lt;cl_type&gt;::operator=(rhs);</div>
 <div class="line"><a id="l10748" name="l10748"></a><span class="lineno">10748</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
@@ -9612,15 +9612,15 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="line"><a id="l11208" name="l11208"></a><span class="lineno">11208</span>CL_HPP_DEFINE_STATIC_MEMBER_ std::once_flag CommandBufferKhr::ext_init_;</div>
 <div class="line"><a id="l11209" name="l11209"></a><span class="lineno">11209</span> </div>
 <div class="line"><a id="l11210" name="l11210"></a><span class="lineno">11210</span><span class="preprocessor">#if defined(cl_khr_command_buffer_mutable_dispatch)</span></div>
-<div class="line"><a id="l11214" name="l11214"></a><span class="lineno">11214</span><span class="keyword">class </span>MutableCommandKhr : <span class="keyword">public</span> detail::Wrapper&lt;cl_mutable_command_khr&gt;</div>
+<div class="line"><a id="l11214" name="l11214"></a><span class="lineno"><a class="line" href="classcl_1_1_mutable_command_khr.html">11214</a></span><span class="keyword">class </span><a class="code hl_class" href="classcl_1_1_mutable_command_khr.html">MutableCommandKhr</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcl_1_1detail_1_1_wrapper.html">detail::Wrapper</a>&lt;cl_mutable_command_khr&gt;</div>
 <div class="line"><a id="l11215" name="l11215"></a><span class="lineno">11215</span>{</div>
 <div class="line"><a id="l11216" name="l11216"></a><span class="lineno">11216</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l11218" name="l11218"></a><span class="lineno">11218</span>    MutableCommandKhr() : detail::Wrapper&lt;cl_type&gt;() { }</div>
+<div class="line"><a id="l11218" name="l11218"></a><span class="lineno"><a class="line" href="classcl_1_1_mutable_command_khr.html#a7c2acd8ff02d856ca247e7a3285102b1">11218</a></span>    <a class="code hl_function" href="classcl_1_1_mutable_command_khr.html#a7c2acd8ff02d856ca247e7a3285102b1">MutableCommandKhr</a>() : detail::Wrapper&lt;cl_type&gt;() { }</div>
 <div class="line"><a id="l11219" name="l11219"></a><span class="lineno">11219</span> </div>
-<div class="line"><a id="l11220" name="l11220"></a><span class="lineno">11220</span>    <span class="keyword">explicit</span> MutableCommandKhr(<span class="keyword">const</span> cl_mutable_command_khr&amp; mutableCommandKhr, <span class="keywordtype">bool</span> retainObject = <span class="keyword">false</span>) :</div>
+<div class="line"><a id="l11220" name="l11220"></a><span class="lineno">11220</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classcl_1_1_mutable_command_khr.html#a7c2acd8ff02d856ca247e7a3285102b1">MutableCommandKhr</a>(<span class="keyword">const</span> cl_mutable_command_khr&amp; mutableCommandKhr, <span class="keywordtype">bool</span> retainObject = <span class="keyword">false</span>) :</div>
 <div class="line"><a id="l11221" name="l11221"></a><span class="lineno">11221</span>        detail::Wrapper&lt;cl_type&gt;(mutableCommandKhr, retainObject) { }</div>
 <div class="line"><a id="l11222" name="l11222"></a><span class="lineno">11222</span> </div>
-<div class="line"><a id="l11223" name="l11223"></a><span class="lineno">11223</span>    MutableCommandKhr&amp; operator=(<span class="keyword">const</span> cl_mutable_command_khr&amp; rhs)</div>
+<div class="line"><a id="l11223" name="l11223"></a><span class="lineno">11223</span>    <a class="code hl_function" href="classcl_1_1_mutable_command_khr.html#a7c2acd8ff02d856ca247e7a3285102b1">MutableCommandKhr</a>&amp; operator=(<span class="keyword">const</span> cl_mutable_command_khr&amp; rhs)</div>
 <div class="line"><a id="l11224" name="l11224"></a><span class="lineno">11224</span>    {</div>
 <div class="line"><a id="l11225" name="l11225"></a><span class="lineno">11225</span>        detail::Wrapper&lt;cl_type&gt;::operator=(rhs);</div>
 <div class="line"><a id="l11226" name="l11226"></a><span class="lineno">11226</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
@@ -9813,6 +9813,8 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="ttc" id="aclasscl_1_1_buffer_render_g_l_html_a9ae513ba0c6664353c389764c7e1011d"><div class="ttname"><a href="classcl_1_1_buffer_render_g_l.html#a9ae513ba0c6664353c389764c7e1011d">cl::BufferRenderGL::BufferRenderGL</a></div><div class="ttdeci">BufferRenderGL()</div><div class="ttdoc">Default constructor - initializes to nullptr.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l04561">opencl.hpp:4561</a></div></div>
 <div class="ttc" id="aclasscl_1_1_buffer_render_g_l_html_ada9141b7a7679f787c41c37fa35cd396"><div class="ttname"><a href="classcl_1_1_buffer_render_g_l.html#ada9141b7a7679f787c41c37fa35cd396">cl::BufferRenderGL::BufferRenderGL</a></div><div class="ttdeci">BufferRenderGL(const Context &amp;context, cl_mem_flags flags, cl_GLuint bufobj, cl_int *err=nullptr)</div><div class="ttdoc">Constructs a BufferRenderGL in a specified context, from a given GL Renderbuffer.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l04541">opencl.hpp:4541</a></div></div>
 <div class="ttc" id="aclasscl_1_1_buffer_render_g_l_html_aeb0b208f83304c4b375a844c59ad6785"><div class="ttname"><a href="classcl_1_1_buffer_render_g_l.html#aeb0b208f83304c4b375a844c59ad6785">cl::BufferRenderGL::operator=</a></div><div class="ttdeci">BufferRenderGL &amp; operator=(const cl_mem &amp;rhs)</div><div class="ttdoc">Assignment from cl_mem - performs shallow copy.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l04577">opencl.hpp:4577</a></div></div>
+<div class="ttc" id="aclasscl_1_1_command_buffer_khr_html"><div class="ttname"><a href="classcl_1_1_command_buffer_khr.html">cl::CommandBufferKhr</a></div><div class="ttdoc">CommandBufferKhr interface for cl_command_buffer_khr.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l10707">opencl.hpp:10708</a></div></div>
+<div class="ttc" id="aclasscl_1_1_command_buffer_khr_html_ae12ca0b9ea98574ec36f93c618b82820"><div class="ttname"><a href="classcl_1_1_command_buffer_khr.html#ae12ca0b9ea98574ec36f93c618b82820">cl::CommandBufferKhr::CommandBufferKhr</a></div><div class="ttdeci">CommandBufferKhr()</div><div class="ttdoc">Default constructor - initializes to nullptr.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l10711">opencl.hpp:10711</a></div></div>
 <div class="ttc" id="aclasscl_1_1_command_queue_html"><div class="ttname"><a href="classcl_1_1_command_queue.html">cl::CommandQueue</a></div><div class="ttdoc">CommandQueue interface for cl_command_queue.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l06945">opencl.hpp:6946</a></div></div>
 <div class="ttc" id="aclasscl_1_1_command_queue_html_a098e6374e539f0479a4a4bfe3329321d"><div class="ttname"><a href="classcl_1_1_command_queue.html#a098e6374e539f0479a4a4bfe3329321d">cl::CommandQueue::enqueueMigrateSVM</a></div><div class="ttdeci">cl_int enqueueMigrateSVM(const cl::vector&lt; cl::vector&lt; T, Alloc &gt; &gt; &amp;svmContainers, const cl::vector&lt; size_type &gt; &amp;sizes, cl_mem_migration_flags flags=0, const vector&lt; Event &gt; *events=nullptr, Event *event=nullptr) const</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l08545">opencl.hpp:8545</a></div></div>
 <div class="ttc" id="aclasscl_1_1_command_queue_html_a09be675998c51f36aa7744b47eabebd3"><div class="ttname"><a href="classcl_1_1_command_queue.html#a09be675998c51f36aa7744b47eabebd3">cl::CommandQueue::CommandQueue</a></div><div class="ttdeci">CommandQueue(const cl_command_queue &amp;commandQueue, bool retainObject=false)</div><div class="ttdoc">Constructor from cl_command_queue - takes ownership.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l07422">opencl.hpp:7422</a></div></div>
@@ -9951,6 +9953,8 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="ttc" id="aclasscl_1_1_memory_html_ab86d24b2a4f9a7090148fb8e77d73135"><div class="ttname"><a href="classcl_1_1_memory.html#ab86d24b2a4f9a7090148fb8e77d73135">cl::Memory::getInfo</a></div><div class="ttdeci">cl_int getInfo(cl_mem_info name, T *param) const</div><div class="ttdoc">Wrapper for clGetMemObjectInfo().</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l03723">opencl.hpp:3723</a></div></div>
 <div class="ttc" id="aclasscl_1_1_memory_html_ad9bfc0da7a18380590271d48528db883"><div class="ttname"><a href="classcl_1_1_memory.html#ad9bfc0da7a18380590271d48528db883">cl::Memory::setDestructorCallback</a></div><div class="ttdeci">cl_int setDestructorCallback(void(CL_CALLBACK *pfn_notify)(cl_mem, void *), void *user_data=nullptr)</div><div class="ttdoc">Registers a callback function to be called when the memory object is no longer needed.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l03758">opencl.hpp:3758</a></div></div>
 <div class="ttc" id="aclasscl_1_1_memory_html_adce7916ea12b74d7f6cffdb5f3cb9d86"><div class="ttname"><a href="classcl_1_1_memory.html#adce7916ea12b74d7f6cffdb5f3cb9d86">cl::Memory::getInfo</a></div><div class="ttdeci">detail::param_traits&lt; detail::cl_mem_info, name &gt;::param_type getInfo(cl_int *err=nullptr) const</div><div class="ttdoc">Wrapper for clGetMemObjectInfo() that returns by value.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l03733">opencl.hpp:3733</a></div></div>
+<div class="ttc" id="aclasscl_1_1_mutable_command_khr_html"><div class="ttname"><a href="classcl_1_1_mutable_command_khr.html">cl::MutableCommandKhr</a></div><div class="ttdoc">MutableCommandKhr interface for cl_mutable_command_khr.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l11214">opencl.hpp:11215</a></div></div>
+<div class="ttc" id="aclasscl_1_1_mutable_command_khr_html_a7c2acd8ff02d856ca247e7a3285102b1"><div class="ttname"><a href="classcl_1_1_mutable_command_khr.html#a7c2acd8ff02d856ca247e7a3285102b1">cl::MutableCommandKhr::MutableCommandKhr</a></div><div class="ttdeci">MutableCommandKhr()</div><div class="ttdoc">Default constructor - initializes to nullptr.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l11218">opencl.hpp:11218</a></div></div>
 <div class="ttc" id="aclasscl_1_1_n_d_range_html"><div class="ttname"><a href="classcl_1_1_n_d_range.html">cl::NDRange</a></div><div class="ttdoc">Class interface for specifying NDRange values.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l05634">opencl.hpp:5635</a></div></div>
 <div class="ttc" id="aclasscl_1_1_n_d_range_html_a1459735d4010054c643ff0fbfc83cd4e"><div class="ttname"><a href="classcl_1_1_n_d_range.html#a1459735d4010054c643ff0fbfc83cd4e">cl::NDRange::NDRange</a></div><div class="ttdeci">NDRange(array&lt; size_type, 1 &gt; a)</div><div class="ttdoc">Constructs one-dimensional range.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l05678">opencl.hpp:5678</a></div></div>
 <div class="ttc" id="aclasscl_1_1_n_d_range_html_a5684b0c2c648557ef31e6b212e8c4939"><div class="ttname"><a href="classcl_1_1_n_d_range.html#a5684b0c2c648557ef31e6b212e8c4939">cl::NDRange::dimensions</a></div><div class="ttdeci">size_type dimensions() const</div><div class="ttdoc">Queries the number of dimensions in the range.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l05695">opencl.hpp:5695</a></div></div>
@@ -10010,6 +10014,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div class="ttc" id="aclasscl_1_1_sampler_html_a692268678bf12b7b754009f9ba291fbc"><div class="ttname"><a href="classcl_1_1_sampler.html#a692268678bf12b7b754009f9ba291fbc">cl::Sampler::getInfo</a></div><div class="ttdeci">cl_int getInfo(cl_sampler_info name, T *param) const</div><div class="ttdoc">Wrapper for clGetSamplerInfo().</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l05606">opencl.hpp:5606</a></div></div>
 <div class="ttc" id="aclasscl_1_1_sampler_html_a81f1d4ea9b3d8bb08ca78d4fbd4bd54e"><div class="ttname"><a href="classcl_1_1_sampler.html#a81f1d4ea9b3d8bb08ca78d4fbd4bd54e">cl::Sampler::Sampler</a></div><div class="ttdeci">Sampler(const Context &amp;context, cl_bool normalized_coords, cl_addressing_mode addressing_mode, cl_filter_mode filter_mode, cl_int *err=nullptr)</div><div class="ttdoc">Constructs a Sampler in a specified context.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l05541">opencl.hpp:5541</a></div></div>
 <div class="ttc" id="aclasscl_1_1_sampler_html_aa32c71d59ca20e83fc283273d0b102cd"><div class="ttname"><a href="classcl_1_1_sampler.html#aa32c71d59ca20e83fc283273d0b102cd">cl::Sampler::Sampler</a></div><div class="ttdeci">Sampler(const cl_sampler &amp;sampler, bool retainObject=false)</div><div class="ttdoc">Constructor from cl_sampler - takes ownership.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l05588">opencl.hpp:5588</a></div></div>
+<div class="ttc" id="aclasscl_1_1_semaphore_html"><div class="ttname"><a href="classcl_1_1_semaphore.html">cl::Semaphore</a></div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l10486">opencl.hpp:10487</a></div></div>
 <div class="ttc" id="aclasscl_1_1_user_event_html"><div class="ttname"><a href="classcl_1_1_user_event.html">cl::UserEvent</a></div><div class="ttdoc">Class interface for user events (a subset of cl_event's).</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l03631">opencl.hpp:3632</a></div></div>
 <div class="ttc" id="aclasscl_1_1_user_event_html_a1ee5bc016d511a4fec5f23b50a70821a"><div class="ttname"><a href="classcl_1_1_user_event.html#a1ee5bc016d511a4fec5f23b50a70821a">cl::UserEvent::UserEvent</a></div><div class="ttdeci">UserEvent()</div><div class="ttdoc">Default constructor - initializes to nullptr.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l03654">opencl.hpp:3654</a></div></div>
 <div class="ttc" id="aclasscl_1_1_user_event_html_a487150399306351928600160ae452f6f"><div class="ttname"><a href="classcl_1_1_user_event.html#a487150399306351928600160ae452f6f">cl::UserEvent::UserEvent</a></div><div class="ttdeci">UserEvent(const Context &amp;context, cl_int *err=nullptr)</div><div class="ttdoc">Constructs a user event on a given context.</div><div class="ttdef"><b>Definition:</b> <a href="opencl_8hpp_source.html#l03638">opencl.hpp:3638</a></div></div>
@@ -10053,7 +10058,7 @@ $(document).ready(function(){initNavTree('opencl_8hpp_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8358e9aed72341d13c81ba12a462bec7.html">CL</a></li><li class="navelem"><a class="el" href="opencl_8hpp.html">opencl.hpp</a></li>
-    <li class="footer">Generated on Mon May 22 2023 10:17:09 for OpenCL C++ Bindings by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+    <li class="footer">Generated on Mon May 22 2023 11:13:25 for OpenCL C++ Bindings by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>
 </body>
